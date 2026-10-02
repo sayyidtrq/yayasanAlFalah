@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-blue-stone: #005c4f;
+  --color-jewel: #17823f;
+  --color-forest: #0b4b22;
+  --color-frost: #d9efeb;
+  --color-cream: #faf3f0;
+  --color-cream-line: #f0ddd3;
+  --color-mist: #edf8f6;
+  --color-rust: #c23e00;
+  --color-rust-dark: #993100;
+  --color-rust-muted: #c2a090;
+  --color-badge-orange: #ff671f;
+  --color-ink: #1a1f1c;
+  --color-ink-soft: #4b534e;
+  --color-ink-muted: #8a928c;
+  --color-line: #e3e6e1;
+  --color-teal-deep: #008572;
+  --color-teal-badge: #009681;
+  --font-sans: var(--font-montserrat);
+  --font-heading: var(--font-philosopher);
+}
+
+/* Buttons: lift on hover. The transform part is skipped for reduced-motion users. */
+@utility btn-lift {
+  transition:
+    transform 200ms ease,
+    background-color 200ms ease,
+    box-shadow 200ms ease;
+  &:hover {
+    box-shadow: 0 10px 22px -10px rgb(0 0 0 / 0.4);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    &:hover {
+      transform: translateY(-2px);
+    }
+    &:active {
+      transform: translateY(0);
+    }
+  }
+}
+
+/* All motion lives here so reduced-motion users get a fully static page. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Scroll reveal: <Reveal> adds .is-in once the element enters the viewport. */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 800ms cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0ms),
+      transform 800ms cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0ms);
+  }
+  .reveal.is-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Load-in for above-the-fold content (pure CSS, no JS needed). */
+  .rise {
+    animation: rise 900ms cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0ms) both;
+  }
+  .drop {
+    animation: drop 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0ms) both;
+  }
+  .settle {
+    animation: settle 2200ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+}
+@keyframes drop {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+}
+@keyframes settle {
+  from {
+    transform: scale(1.1);
+  }
+}

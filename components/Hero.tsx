@@ -8,7 +8,7 @@ const delay = (ms: number) => ({ "--d": `${ms}ms` }) as React.CSSProperties;
 
 export default function Hero() {
   return (
-    <header className="relative flex min-h-140 flex-1 flex-col overflow-hidden text-white">
+    <header className="relative flex min-h-140 flex-1 flex-col text-white">
       <HeroBackdrop />
       <div className="relative flex flex-1 flex-col">
         <Navbar />

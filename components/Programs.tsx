@@ -61,7 +61,7 @@ export default function Programs() {
                     fill
                     className="object-cover transition-transform duration-700 ease-out motion-safe:group-hover:scale-105"
                   />
-                  <span className="absolute top-2.5 left-2.5 rounded-[5px] bg-badge-orange px-2.25 py-0.75 text-[11px] leading-[normal] font-semibold text-ink">
+                  <span className="absolute top-2.5 left-2.5 rounded-[5px] bg-rust px-2.25 py-0.75 text-[11px] leading-[normal] font-semibold text-white">
                     {badge}
                   </span>
                 </div>

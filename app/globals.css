@@ -11,13 +11,11 @@
   --color-rust: #c23e00;
   --color-rust-dark: #993100;
   --color-rust-muted: #c2a090;
-  --color-badge-orange: #ff671f;
   --color-ink: #1a1f1c;
   --color-ink-soft: #4b534e;
   --color-ink-muted: #8a928c;
   --color-line: #e3e6e1;
   --color-teal-deep: #008572;
-  --color-teal-badge: #009681;
   --font-sans: var(--font-montserrat);
   --font-heading: var(--font-philosopher);
 }
@@ -87,5 +85,12 @@
 @keyframes settle {
   from {
     transform: scale(1.1);
+  }
+}
+
+/* Anchor targets land below the fixed navbar (compact height 4rem). */
+@layer base {
+  [id] {
+    scroll-margin-top: 4rem;
   }
 }

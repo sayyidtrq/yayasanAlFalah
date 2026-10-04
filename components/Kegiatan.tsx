@@ -52,7 +52,7 @@ export default function Kegiatan() {
                 />
               </div>
               <div className="flex flex-1 flex-col items-start gap-2 p-5">
-                <span className="rounded-md bg-teal-badge px-2.5 py-0.75 text-[13px] leading-4 font-semibold text-ink">
+                <span className="rounded-md bg-teal-deep px-2.5 py-0.75 text-[13px] leading-4 font-semibold text-white">
                   {badge}
                 </span>
                 <h3 className="pt-1 text-xl leading-[26px] font-semibold text-ink">{title}</h3>

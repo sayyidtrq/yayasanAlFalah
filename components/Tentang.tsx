@@ -8,9 +8,6 @@ export default function Tentang() {
     <section id="tentang" className="flex flex-1 items-center bg-mist px-6 py-8 md:px-16">
       <div className="grid w-full gap-10 md:grid-cols-2 md:items-stretch md:gap-16">
         <Reveal className="flex flex-col items-start justify-center gap-4">
-          <span className="text-xs font-semibold tracking-[0.48px] text-teal-deep uppercase">
-            Tentang Lembaga
-          </span>
           <h2 className="font-heading text-4xl font-bold text-ink">Mengabdi Sejak 1978</h2>
           <p className="max-w-130 text-base leading-7 text-ink-soft">
             Lembaga Kursus Al Quran Al Falah berada di bawah Yayasan Masjid Al Falah Surabaya.

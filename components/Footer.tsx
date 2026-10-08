@@ -8,6 +8,7 @@ const columns = [
   {
     title: "Tautan",
     links: [
+      { href: "/", label: "Beranda" },
       { href: "/tentang-kami", label: "Tentang Kami" },
       { href: "/#program", label: "Program" },
       { href: "/#kegiatan", label: "Kegiatan" },

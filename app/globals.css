@@ -16,6 +16,9 @@
   --color-ink-muted: #8a928c;
   --color-line: #e3e6e1;
   --color-teal-deep: #008572;
+  --color-flame: #ff6014;
+  --color-ribbon: #c7e8e3;
+  --color-surface: #f7f8f5;
   --font-sans: var(--font-montserrat);
   --font-heading: var(--font-philosopher);
 }

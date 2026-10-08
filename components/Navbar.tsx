@@ -19,7 +19,7 @@ const links: NavLink[] = [
     children: [
       { href: "/tentang-kami#profil", label: "Profil Lembaga", hint: "Sejarah dan perjalanan sejak 1978" },
       { href: "/tentang-kami#visi-misi", label: "Visi & Misi", hint: "Arah dan tujuan lembaga" },
-      { href: "/tentang-kami#layanan", label: "Layanan Kami", hint: "16 program dan format kelas" },
+      { href: "/tentang-kami#layanan", label: "Layanan Kami", hint: "16 program dalam empat rumpun" },
     ],
   },
   { href: "/#kegiatan", label: "Kegiatan" },

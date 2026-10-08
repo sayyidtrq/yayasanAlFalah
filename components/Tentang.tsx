@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { PHOTO_PLACEHOLDER } from "@/lib/site";
 import Reveal from "./Reveal";
 
 export default function Tentang() {
@@ -22,7 +21,13 @@ export default function Tentang() {
           </Link>
         </Reveal>
         <Reveal delay={150} className="relative min-h-56 overflow-hidden rounded-2xl border border-line">
-          <Image src={PHOTO_PLACEHOLDER} alt="" fill className="object-cover" />
+          <Image
+            src="/images/about-us.jpeg"
+            alt="Gedung Masjid Al-Falah Surabaya"
+            fill
+            sizes="(min-width: 768px) 50vw, 100vw"
+            className="object-cover"
+          />
         </Reveal>
       </div>
     </section>

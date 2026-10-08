@@ -6,7 +6,14 @@ import Image from "next/image";
 export default function HeroBackdrop({ inner = false }: { inner?: boolean }) {
   return (
     <div className="absolute inset-0 overflow-hidden">
-      <Image src="/images/hero-placeholder.svg" alt="" fill priority className="settle object-cover" />
+      <Image
+        src="/images/hero.png"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="settle object-cover object-[center_55%]"
+      />
       {inner ? (
         <>
           <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(0,92,79,0.82)_0%,rgba(0,92,79,0.62)_40%,rgba(0,92,79,0.38)_72%,rgba(0,92,79,0.26)_100%)]" />

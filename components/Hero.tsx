@@ -12,22 +12,29 @@ export default function Hero() {
       <HeroBackdrop />
       <div className="relative flex flex-1 flex-col">
         <Navbar />
-        <div className="flex flex-1 flex-col justify-center px-6 pb-16 md:px-16 md:pb-44">
+        <div className="flex flex-1 flex-col justify-center px-6 pb-16 md:px-16 md:pb-28">
+          <p
+            style={delay(100)}
+            className="rise mb-3 text-base font-semibold text-white/92 text-shadow-[0_1px_8px_rgba(0,0,0,0.2)] md:text-lg"
+          >
+            Temukan Langkah Belajarmu Bersama Al Falah
+          </p>
           <h1
-            style={delay(150)}
+            style={delay(200)}
             className="rise max-w-129 font-heading text-4xl leading-tight font-bold text-shadow-[0_2px_12px_rgba(0,0,0,0.25)] md:text-[52px] md:leading-[58px]"
           >
-            Bimbingan Al-Qur&apos;an Profesional untuk Segala Usia
+            Belajar Al-Qur&apos;an, Bertumbuh dalam Kebaikan.
           </h1>
           <p
-            style={delay(300)}
-            className="rise mt-5 max-w-120 text-lg leading-7 text-white/92 text-shadow-[0_1px_8px_rgba(0,0,0,0.2)]"
+            style={delay(320)}
+            className="rise mt-5 max-w-130 text-lg leading-7 text-white/92 text-shadow-[0_1px_8px_rgba(0,0,0,0.2)]"
           >
-            Di bawah Yayasan Masjid Al Falah Surabaya sejak 1978 — kelas
-            Al-Qur&apos;an untuk anak-anak hingga lansia, tatap muka maupun
-            online.
+            Belajar membaca, memperbaiki bacaan, menghafal, hingga memahami
+            Al-Qur&apos;an bersama Lembaga Kursus Al-Qur&apos;an Al Falah. Tersedia
+            beragam program untuk anak-anak hingga dewasa, dengan pilihan kelas
+            tatap muka maupun online.
           </p>
-          <div style={delay(450)} className="rise mt-8 flex flex-wrap gap-4 text-[15px] font-semibold">
+          <div style={delay(440)} className="rise mt-8 flex flex-wrap gap-4 text-[15px] font-semibold">
             <Link
               href="#program"
               className="btn-lift flex min-h-11 items-center rounded-xl bg-white px-7 text-blue-stone hover:bg-white/90"

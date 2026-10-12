@@ -42,8 +42,9 @@ export default function NilaiUnggulan() {
             Nilai Unggulan
           </h2>
           <p className="max-w-[46ch] text-lg leading-8 text-white/85">
-            Hampir lima dekade, Lembaga Kursus Al Quran Al Falah menjadi tempat belajar
-            Al-Qur&apos;an yang tertib, terjangkau, dan terbuka bagi siapa saja.
+            Lebih dari empat dekade mendampingi masyarakat dalam belajar Al-Qur&apos;an. Al Falah
+            hadir dengan program yang beragam, pembelajaran bertahap, dan pilihan kelas yang
+            menyesuaikan kebutuhan santri.
           </p>
           <div className="relative mt-2 hidden aspect-4/3 overflow-hidden rounded-2xl lg:block">
             <Image src={PHOTO_PLACEHOLDER} alt="" fill className="object-cover opacity-90" />

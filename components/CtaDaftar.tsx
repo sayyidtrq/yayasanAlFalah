@@ -13,9 +13,12 @@ export default function CtaDaftar() {
           Pendaftaran Dibuka
         </span>
         <h2 className="font-heading text-[28px] font-bold text-ink">
-          Tertarik Mendaftar di Lembaga Kursus Al Quran Al Falah?
+          Yuk, Belajar Al-Qur&apos;an Bareng Al Falah!
         </h2>
-        <p className="text-base text-ink-soft">Tim admin kami siap membantu lewat WhatsApp.</p>
+        <p className="text-base leading-7 text-ink-soft">
+          Mulai langkah baikmu hari ini. Hubungi kami melalui WhatsApp untuk informasi program,
+          jadwal kelas, dan pendaftaran.
+        </p>
       </Reveal>
       <Reveal delay={150} className="shrink-0">
         <a
@@ -25,7 +28,7 @@ export default function CtaDaftar() {
           className="btn-lift flex min-h-11 items-center gap-2.5 rounded-xl bg-jewel px-8 py-4 text-base font-semibold text-white hover:bg-jewel/90"
         >
           <Image src="/images/whatsapp.svg" alt="" width={20} height={20} />
-          Daftar via WhatsApp
+          Mulai Langkah Baikmu!
         </a>
       </Reveal>
     </section>

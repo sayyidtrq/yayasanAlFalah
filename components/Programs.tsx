@@ -37,9 +37,10 @@ export default function Programs() {
       <Reveal className="flex flex-wrap items-end justify-between gap-4">
         <div className="flex flex-col gap-2">
           <h2 className="font-heading text-4xl font-bold text-ink">Program Unggulan</h2>
-          <p className="text-base text-ink-soft">
-            Sembilan program unggulan Lembaga Kursus Al Quran Al Falah, dari anak-anak hingga
-            dewasa dan lansia.
+          <p className="mt-1 text-lg font-semibold text-ink">Temukan Program yang Sesuai untukmu</p>
+          <p className="max-w-[68ch] text-base leading-7 text-ink-soft">
+            Setiap orang punya tujuan belajar yang berbeda. Kenali berbagai program Al Falah dan
+            pilih pembelajaran yang sesuai dengan kebutuhanmu.
           </p>
         </div>
         <Link

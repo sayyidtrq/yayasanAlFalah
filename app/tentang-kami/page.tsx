@@ -21,12 +21,28 @@ export const metadata: Metadata = {
  * Program list: masjidalfalah.or.id/lembaga-kursus-al-quran-al-falah.
  */
 
-const profilChecks = [
-  "Di bawah naungan Masjid Al-Falah Surabaya",
-  "Tes penempatan untuk santri baru",
-  "Pilihan jam pagi, siang, sore, dan malam",
-  "Kelas tatap muka dan online",
-];
+const profilPoints = [
+  {
+    icon: "mosque",
+    title: "Di Bawah Naungan Masjid Al-Falah",
+    text: "Belajar bersama lembaga yang berada di bawah naungan Masjid Al-Falah Surabaya.",
+  },
+  {
+    icon: "clipboard",
+    title: "Penempatan Kelas yang Tepat",
+    text: "Tes penempatan untuk membantu menentukan kelas sesuai kemampuan awal santri.",
+  },
+  {
+    icon: "clock",
+    title: "Jadwal Belajar Fleksibel",
+    text: "Pilih jadwal pagi, siang, sore, atau malam sesuai ketersediaan kelas.",
+  },
+  {
+    icon: "devices",
+    title: "Belajar Offline maupun Online",
+    text: "Pilih metode belajar tatap muka atau online sesuai kebutuhanmu.",
+  },
+] as const;
 
 // "[Perlu konfirmasi …]" notes are carried over from the design for the client to verify.
 const milestones: Milestone[] = [
@@ -141,11 +157,50 @@ function Label({ children }: { children: string }) {
   return <div className="text-[13px] leading-5 font-bold tracking-[0.08em] text-blue-stone uppercase">{children}</div>;
 }
 
-function Check() {
+// Line icons for the profil points; one stroke weight, brand green.
+const pointPaths = {
+  mosque: (
+    <>
+      <path d="M3 21h18M5 21V10l7-5 7 5v11" />
+      <path d="M9 21v-5h6v5M3 10h18" />
+    </>
+  ),
+  clipboard: (
+    <>
+      <rect x="5" y="4" width="14" height="17" rx="2" />
+      <path d="M9 4V3h6v1M9 13l2 2 4-4" />
+    </>
+  ),
+  clock: (
+    <>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M12 7.5V12l3 2" />
+    </>
+  ),
+  devices: (
+    <>
+      <rect x="2.5" y="5" width="13" height="10" rx="1.5" />
+      <path d="M6 19h6M9 15v4" />
+      <rect x="17" y="9" width="4.5" height="10" rx="1" />
+    </>
+  ),
+};
+
+function PointIcon({ name }: { name: keyof typeof pointPaths }) {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="shrink-0">
-      <circle cx="12" cy="12" r="9" stroke="var(--color-rust)" strokeWidth="1.8" />
-      <path d="M8 12.4l2.6 2.6L16 9.6" stroke="var(--color-rust)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    <svg
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="var(--color-jewel)"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className="mt-px shrink-0"
+    >
+      {pointPaths[name]}
     </svg>
   );
 }
@@ -210,7 +265,7 @@ export default function TentangKami() {
             <h2 className="font-heading text-[28px] leading-[34px] font-bold text-ink md:text-4xl md:leading-11">
               Lembaga Kursus Al-Qur&apos;an Al-Falah Surabaya
             </h2>
-            <p className="mt-5 text-base leading-7 text-ink-soft md:text-[17px]">
+            <p className="mt-5 text-justify text-base leading-7 text-ink-soft hyphens-auto md:text-[17px]">
               Lembaga Kursus Al-Qur&apos;an (LKA) Al-Falah Surabaya resmi didirikan pada tahun 1978
               sebagai bagian dari unit kegiatan dakwah di bawah naungan Yayasan Masjid Al-Falah
               Surabaya. Pembentukannya dilatarbelakangi oleh tingginya kebutuhan jamaah dan
@@ -218,17 +273,20 @@ export default function TentangKami() {
               khususnya bagi kalangan dewasa dan orang tua yang ingin memperlancar bacaan, memahami
               tajwid, hingga mendalami isi kandungan Al-Qur&apos;an.
             </p>
-            <p className="mt-3.5 text-base leading-7 text-ink-soft md:text-[17px]">
+            <p className="mt-3.5 text-justify text-base leading-7 text-ink-soft hyphens-auto md:text-[17px]">
               Kehadiran LKA ini dimotori oleh pengurus Yayasan Masjid Al-Falah bersama para tokoh
               agama dan pengajar Al-Qur&apos;an setempat yang berkomitmen menjadikan masjid bukan
               hanya sebagai tempat ibadah ritual, melainkan juga pusat pendidikan dan dakwah Islam
               yang inklusif.
             </p>
-            <ul className="mt-7 grid gap-x-6 gap-y-3 sm:grid-cols-2">
-              {profilChecks.map((c) => (
-                <li key={c} className="flex items-center gap-2.5 text-[15px] leading-[22px] font-medium text-ink">
-                  <Check />
-                  {c}
+            <ul className="mt-8 flex flex-col gap-5 rounded-2xl border border-line bg-surface p-5 md:p-6">
+              {profilPoints.map(({ icon, title, text }) => (
+                <li key={title} className="flex items-start gap-3">
+                  <PointIcon name={icon} />
+                  <div>
+                    <h3 className="text-[15px] leading-[22px] font-semibold text-ink">{title}</h3>
+                    <p className="mt-0.5 text-sm leading-[22px] text-ink-soft">{text}</p>
+                  </div>
                 </li>
               ))}
             </ul>

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { WHATSAPP_URL } from "@/lib/site";
 
 type NavLink = {
   href: string;
@@ -137,13 +138,15 @@ export default function Navbar() {
         </ul>
 
         <div className="flex items-center gap-3">
-          <Link
-            href="/#daftar"
-            onClick={close}
-            className="btn-lift flex min-h-11 items-center rounded-xl bg-jewel px-5 text-[15px] font-semibold text-white hover:bg-jewel/90 md:px-6"
+          {/* Hidden on phones: no room next to the menu button; the menu panel carries it. */}
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-lift hidden min-h-11 items-center rounded-xl bg-jewel px-5 text-[15px] font-semibold text-white hover:bg-jewel/90 sm:flex md:px-6"
           >
-            Daftar
-          </Link>
+            Daftar Sekarang!
+          </a>
           <button
             ref={toggleRef}
             type="button"
@@ -213,13 +216,15 @@ export default function Navbar() {
             </li>
           ))}
         </ul>
-        <Link
-          href="/#daftar"
+        <a
+          href={WHATSAPP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
           onClick={close}
           className="mt-8 flex min-h-12 items-center justify-center rounded-xl bg-white text-[15px] font-semibold text-blue-stone"
         >
-          Daftar Sekarang
-        </Link>
+          Daftar Sekarang!
+        </a>
       </div>
     </>
   );

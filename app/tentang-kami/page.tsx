@@ -2,11 +2,10 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Footer from "@/components/Footer";
-import HeroBackdrop from "@/components/HeroBackdrop";
-import Navbar from "@/components/Navbar";
+import LokasiPanel from "@/components/LokasiPanel";
+import PageHeader from "@/components/PageHeader";
 import Reveal from "@/components/Reveal";
-import Timeline, { type Milestone } from "@/components/Timeline";
-import { ADDRESS, PHOTO_PLACEHOLDER, WHATSAPP_LABEL, WHATSAPP_URL } from "@/lib/site";
+import { PHOTO_PLACEHOLDER } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Tentang Kami — Lembaga Kursus Al Qur'an Al Falah",
@@ -44,43 +43,6 @@ const profilPoints = [
   },
 ] as const;
 
-// "[Perlu konfirmasi …]" notes are carried over from the design for the client to verify.
-const milestones: Milestone[] = [
-  {
-    year: "1978",
-    title: "Berawal dari Remaja Masjid",
-    text: "Seksi Dakwah Remaja Masjid Al-Falah mulai menghimpun jamaah untuk belajar membaca Al-Qur'an. Angkatan awal diikuti sekitar 75 sampai 125 santri, tanpa dipungut biaya.",
-  },
-  {
-    year: "1984",
-    title: "Mulai dikelola profesional",
-    text: "Kursus dikelola lebih serius dengan sistem infaq. Jumlah santri tumbuh dari ratusan hingga sekitar 1.500 orang.",
-    note: "[Perlu konfirmasi: sumber menyebut 1981 dan 1984]",
-  },
-  {
-    year: "1986",
-    title: "Di bawah Majelis Pemuda Al-Falah",
-    text: "Seiring berdirinya Majelis Pemuda Al-Falah, pengelolaan kursus berada di bawah tanggung jawab majelis tersebut.",
-    note: "[Perlu konfirmasi: tahun perkiraan]",
-  },
-  {
-    year: "1990",
-    title: "Semi otonom di bawah Yayasan",
-    text: "Kursus berdiri semi otonom, langsung di bawah bidang Pendidikan Yayasan Masjid Al-Falah Surabaya. Jajaran pembina bertambah hingga sekitar 45 ustadz.",
-  },
-  {
-    year: "2007",
-    title: "Membuka kelas anak (TPQ)",
-    text: "Kursus diamanahi mengelola TPQ. Sejak itu anak usia 4 tahun sampai SMP ikut dibina bacaan Al-Qur'an, aqidah, dan akhlaknya.",
-  },
-  {
-    year: "Kini",
-    title: "Belajar untuk segala usia",
-    text: "Melayani anak-anak hingga lansia melalui 16 program kursus, dengan kelas tatap muka dan online.",
-    note: "[Perlu konfirmasi: tonggak setelah 2008]",
-  },
-];
-
 const misi = [
   "Menyelenggarakan metode pembelajaran Al-Qur'an yang efektif dan efisien untuk semua jenjang usia.",
   "Membina hafalan dan pemahaman tajwid santri melalui tenaga pendidik kompeten dan berpengalaman.",
@@ -111,7 +73,7 @@ const rumpun = [
   },
   {
     name: "Studi Islam",
-    items: ["Sholat dan Hukum Islam", "Al Hadist", "Siroh Nabi", "Aqidah Akhlaq", "Bahasa Arab", "Dakwah"],
+    items: ["Sholat dan Hukum Islam", "Al Hadist", "Siroh Nabi", "Aqidah Akhlaq", "Bahasa Arab", "Dakwah & Public Speaking"],
   },
   { name: "Praktik Ibadah", items: ["Imam & Perawatan Jenazah"] },
   { name: "Anak-Anak", items: ["Tahfidz Cilik & TPQ"] },
@@ -134,9 +96,6 @@ const kegiatan = [
     alt: "Warga menerima paket bantuan dalam kegiatan bakti sosial",
   },
 ];
-
-const MAPS_QUERY = "Masjid+Al+Falah+Surabaya";
-const delay = (ms: number) => ({ "--d": `${ms}ms` }) as React.CSSProperties;
 
 function Pill({ tone, children }: { tone: "rust" | "teal" | "teal-on-white"; children: string }) {
   const tones = {
@@ -205,57 +164,13 @@ function PointIcon({ name }: { name: keyof typeof pointPaths }) {
   );
 }
 
-const icon = { stroke: "var(--color-teal-deep)", strokeWidth: 1.7 };
-function PinIcon({ size = 22 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true" className="mt-px shrink-0">
-      <path d="M12 21s-6.5-5.6-6.5-10.5a6.5 6.5 0 0 1 13 0C18.5 15.4 12 21 12 21Z" {...icon} strokeLinejoin="round" />
-      <circle cx="12" cy="10.5" r="2.4" {...icon} />
-    </svg>
-  );
-}
-function ChatIcon() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="mt-px shrink-0">
-      <path d="M4 20l1.4-4.2A8 8 0 1 1 9.4 19L4 20Z" {...icon} strokeLinejoin="round" />
-      <path d="M8.5 10.5c.3 2 2 3.7 4 4" {...icon} strokeLinecap="round" />
-    </svg>
-  );
-}
-function ClockIcon() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="mt-px shrink-0">
-      <circle cx="12" cy="12" r="8.5" {...icon} />
-      <path d="M12 7.5V12l3 2" {...icon} strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
 export default function TentangKami() {
   return (
     <main>
-      {/* Hero */}
-      <header className="relative flex min-h-90 flex-col text-white md:min-h-120">
-        <HeroBackdrop inner />
-        <div className="relative flex flex-1 flex-col">
-          <Navbar />
-          <div className="flex flex-1 flex-col justify-center px-6 pb-12 md:px-16 md:pb-14">
-            <h1
-              style={delay(150)}
-              className="rise font-heading text-4xl font-bold text-shadow-[0_2px_12px_rgba(0,0,0,0.25)] md:text-[52px] md:leading-[58px]"
-            >
-              Tentang Kami
-            </h1>
-            <p
-              style={delay(300)}
-              className="rise mt-5 max-w-130 text-base leading-7 text-white/92 text-shadow-[0_1px_8px_rgba(0,0,0,0.2)] md:text-lg"
-            >
-              Salah satu pelopor pendidikan Al-Qur&apos;an berbasis masjid di Kota Surabaya, di bawah
-              naungan Yayasan Masjid Al-Falah Surabaya sejak 1978.
-            </p>
-          </div>
-        </div>
-      </header>
+      <PageHeader
+        title="Tentang Kami"
+        intro="Salah satu pelopor pendidikan Al-Qur'an berbasis masjid di Kota Surabaya, di bawah naungan Yayasan Masjid Al-Falah Surabaya sejak 1978."
+      />
 
       {/* Profil */}
       <section id="profil" className="bg-white px-6 py-12 md:px-16 md:py-22">
@@ -314,19 +229,26 @@ export default function TentangKami() {
         </div>
       </section>
 
-      {/* Sejarah */}
-      <section id="sejarah" className="bg-white px-6 pt-12 pb-8 md:px-16 lg:px-0 lg:pt-24">
-        <Reveal className="lg:px-16 lg:text-center">
-          <Pill tone="teal">Sejarah Singkat</Pill>
-          <h2 className="font-heading text-[28px] leading-[34px] font-bold text-ink md:text-4xl md:leading-11">
-            Perjalanan Kami <span className="text-teal-deep">Sejak 1978</span>
-          </h2>
-          <p className="mt-3 max-w-160 text-[15px] leading-6 text-ink-soft md:text-base md:leading-[26px] lg:mx-auto">
-            Lahir dari inisiatif para pemuda dan mahasiswa di Masjid Al-Falah, lalu tumbuh menjadi
-            lembaga kursus Al-Qur&apos;an untuk segala usia.
-          </p>
+      {/* Sejarah: the milestone timeline was dropped (client review 14/10); one statement remains. */}
+      <section id="sejarah" className="bg-white px-6 py-12 md:px-16 md:py-20">
+        <Reveal className="grid items-center gap-6 rounded-[20px] bg-mist px-6 py-10 md:grid-cols-[auto_minmax(0,1fr)] md:gap-14 md:px-14 md:py-14">
+          <div
+            aria-hidden="true"
+            className="font-heading text-[96px] leading-none font-bold text-flame md:text-[148px]"
+          >
+            1978
+          </div>
+          <div>
+            <Pill tone="teal-on-white">Sejarah Singkat</Pill>
+            <h2 className="font-heading text-[28px] leading-[34px] font-bold text-ink md:text-4xl md:leading-11">
+              Perjalanan Kami <span className="text-teal-deep">Sejak 1978</span>
+            </h2>
+            <p className="mt-3 max-w-150 text-base leading-7 text-ink-soft md:text-[17px]">
+              Lahir dari inisiatif para pemuda dan mahasiswa di Masjid Al-Falah, lalu tumbuh menjadi
+              lembaga kursus Al-Qur&apos;an untuk segala usia.
+            </p>
+          </div>
         </Reveal>
-        <Timeline items={milestones} />
       </section>
 
       {/* Visi, Misi, Nilai */}
@@ -447,7 +369,7 @@ export default function TentangKami() {
             </h2>
           </div>
           <Link
-            href="/#kegiatan"
+            href="/kegiatan"
             className="text-[15px] font-semibold whitespace-nowrap text-rust underline-offset-4 hover:underline"
           >
             Lihat Semua Kegiatan
@@ -475,83 +397,7 @@ export default function TentangKami() {
         </div>
       </section>
 
-      {/* Ajakan + Lokasi */}
-      <section id="lokasi" className="bg-white px-6 pb-12 md:px-16 md:pb-24">
-        <Reveal className="overflow-hidden rounded-[20px] bg-mist">
-          <div className="relative overflow-hidden">
-            <Image src={PHOTO_PLACEHOLDER} alt="" fill className="object-cover" />
-            <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(0,92,79,0.92)_0%,rgba(0,92,79,0.8)_45%,rgba(0,92,79,0.55)_100%)]" />
-            <div className="relative flex flex-col gap-6 px-6 py-8 md:min-h-50 md:flex-row md:items-center md:justify-between md:gap-10 md:px-12">
-              <div className="min-w-0">
-                <h2 className="font-heading text-[28px] leading-[34px] font-bold text-white text-shadow-[0_2px_12px_rgba(0,0,0,0.25)] md:text-[34px] md:leading-[42px]">
-                  Mari Belajar Al-Qur&apos;an Bersama Kami
-                </h2>
-                <p className="mt-2.5 max-w-150 text-[15px] leading-6 text-white/94 md:text-base md:leading-[26px]">
-                  Datang langsung ke sekretariat di Masjid Al-Falah Surabaya, atau tanyakan dulu ke
-                  admin kami lewat WhatsApp.
-                </p>
-              </div>
-              <div className="flex shrink-0 flex-col gap-3 sm:flex-row sm:gap-4">
-                <Link
-                  href="/#program"
-                  className="btn-lift flex min-h-12 items-center justify-center rounded-xl bg-white px-7 text-[15px] font-semibold text-blue-stone hover:bg-surface"
-                >
-                  Lihat Program
-                </Link>
-                <a
-                  href={WHATSAPP_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-lift flex min-h-12 items-center justify-center gap-2 rounded-xl bg-jewel px-7 text-[15px] font-semibold text-white hover:bg-jewel/90"
-                >
-                  <Image src="/images/whatsapp.svg" alt="" width={18} height={18} />
-                  Daftar via WhatsApp
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-8 px-6 py-8 md:px-12 md:py-10 lg:flex-row lg:items-stretch lg:gap-12">
-            <div className="relative min-h-60 overflow-hidden rounded-xl border border-frost bg-white lg:w-130 lg:shrink-0">
-              <iframe
-                title="Peta lokasi Masjid Al-Falah Surabaya"
-                src={`https://www.google.com/maps?q=${MAPS_QUERY}&output=embed`}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="absolute inset-0 size-full border-0"
-              />
-            </div>
-            <div className="flex min-w-0 flex-1 flex-col justify-center">
-              <h3 className="font-heading text-2xl leading-8 font-bold text-ink">
-                Sekretariat di Masjid Al-Falah Surabaya
-              </h3>
-              <ul className="mt-[18px] flex flex-col gap-3 text-base leading-6">
-                <li className="flex items-start gap-3 text-ink">
-                  <PinIcon />
-                  {ADDRESS.replace(", Surabaya", ", Darmo, Kec. Wonokromo, Surabaya")}
-                </li>
-                <li className="flex items-start gap-3 text-ink">
-                  <ChatIcon />
-                  WhatsApp {WHATSAPP_LABEL}
-                </li>
-                <li className="flex items-start gap-3 text-ink-soft">
-                  <ClockIcon />
-                  {/* ponytail: hours from the period-128 registration notice; confirm with sekretariat. */}
-                  Senin–Sabtu, 07.00–17.00 WIB
-                </li>
-              </ul>
-              <a
-                href={`https://www.google.com/maps/search/?api=1&query=${MAPS_QUERY}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-6 flex min-h-12 items-center self-start rounded-xl border-2 border-blue-stone px-[26px] text-[15px] font-semibold text-blue-stone transition-colors hover:bg-white"
-              >
-                Buka di Google Maps
-              </a>
-            </div>
-          </div>
-        </Reveal>
-      </section>
+      <LokasiPanel />
 
       <Footer />
     </main>

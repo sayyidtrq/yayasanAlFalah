@@ -23,9 +23,9 @@ const links: NavLink[] = [
       { href: "/tentang-kami#layanan", label: "Layanan Kami", hint: "16 program dalam empat rumpun" },
     ],
   },
-  { href: "/#kegiatan", label: "Kegiatan" },
-  { href: "/#program", label: "Program" },
-  { href: "/#kontak", label: "Kontak" },
+  { href: "/kegiatan", label: "Kegiatan" },
+  { href: "/program", label: "Program" },
+  { href: "/kontak", label: "Kontak" },
 ];
 
 const linkBase = "relative flex items-center gap-1.5 pb-2 transition-colors duration-200";

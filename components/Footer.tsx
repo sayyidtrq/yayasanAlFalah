@@ -7,8 +7,9 @@ import Reveal from "./Reveal";
 const pages = [
   { href: "/", label: "Beranda" },
   { href: "/tentang-kami", label: "Tentang Kami" },
-  { href: "/#program", label: "Program" },
-  { href: "/#kegiatan", label: "Kegiatan" },
+  { href: "/program", label: "Program" },
+  { href: "/kegiatan", label: "Kegiatan" },
+  { href: "/kontak", label: "Kontak" },
 ];
 
 // Brand-neutral line icons, one stroke weight. Paths are drawn at 24×24.

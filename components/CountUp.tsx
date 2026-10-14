@@ -2,6 +2,9 @@
 
 import { useLayoutEffect, useRef } from "react";
 
+// Indonesian grouping: 2750 -> "2.750".
+const fmt = (n: number) => n.toLocaleString("id-ID");
+
 // Counts 0 -> value when scrolled into view. SSR renders the final number (no-JS / SEO safe);
 // the reset to 0 happens before first paint, and the text node is mutated directly so React never diffs it.
 export default function CountUp({
@@ -34,7 +37,7 @@ export default function CountUp({
           const tick = (now: number) => {
             const p = Math.min((now - start) / duration, 1);
             const eased = p === 1 ? 1 : 1 - 2 ** (-10 * p); // ease-out expo
-            text.nodeValue = `${Math.round(value * eased)}${suffix}`;
+            text.nodeValue = `${fmt(Math.round(value * eased))}${suffix}`;
             if (p < 1) raf = requestAnimationFrame(tick);
           };
           raf = requestAnimationFrame(tick);
@@ -48,13 +51,13 @@ export default function CountUp({
       io.disconnect();
       clearTimeout(timer);
       cancelAnimationFrame(raf);
-      text.nodeValue = `${value}${suffix}`;
+      text.nodeValue = `${fmt(value)}${suffix}`;
     };
   }, [value, suffix, duration, delay]);
 
   return (
     <span ref={ref} className="tabular-nums">
-      {`${value}${suffix}`}
+      {`${fmt(value)}${suffix}`}
     </span>
   );
 }

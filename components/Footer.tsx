@@ -8,7 +8,7 @@ const pages = [
   { href: "/", label: "Beranda" },
   { href: "/tentang-kami", label: "Tentang Kami" },
   { href: "/program", label: "Program" },
-  { href: "/kegiatan", label: "Kegiatan" },
+  { href: "/berita", label: "Berita" },
   { href: "/kontak", label: "Kontak" },
 ];
 
@@ -33,12 +33,6 @@ const icons: Record<string, ReactNode> = {
       <circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" />
     </>
   ),
-  link: (
-    <>
-      <path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1" />
-      <path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1" />
-    </>
-  ),
   channel: (
     <>
       <path d="M4 10v4h3l5 4V6L7 10H4Z" />
@@ -47,14 +41,13 @@ const icons: Record<string, ReactNode> = {
   ),
 };
 
-// ponytail: lynk.id and WhatsApp channel URLs unknown, "#" until provided.
+// ponytail: WhatsApp channel URL unknown, "#" until provided.
 const contact = [
   { icon: "whatsapp", label: `WhatsApp ${WHATSAPP_LABEL}`, href: WHATSAPP_URL },
   { icon: "email", label: `Email ${EMAIL}`, href: `mailto:${EMAIL}` },
 ];
 const social = [
   { icon: "instagram", label: "Instagram @kursusalfalahsby", href: INSTAGRAM_URL },
-  { icon: "link", label: "Semua Tautan (lynk.id)", href: "#" },
   { icon: "channel", label: "Channel WhatsApp", href: "#" },
 ];
 

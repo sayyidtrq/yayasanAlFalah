@@ -1,7 +1,16 @@
-// Shared content for the landing sliders and the /kegiatan and /program pages.
+// Shared content for the landing sliders and the /berita and /program pages.
+
+// Berita categories (client revision 17/10). The gallery filters by these.
+export const beritaKategori = [
+  { slug: "kegiatan", label: "Kegiatan" },
+  { slug: "kajian-islam", label: "Kajian Islam" },
+  { slug: "hukum-islam", label: "Hukum Islam" },
+] as const;
+export type KategoriSlug = (typeof beritaKategori)[number]["slug"];
 
 export type Kegiatan = {
   slug: string;
+  kategori: KategoriSlug;
   badge: string;
   title: string;
   desc: string;
@@ -13,6 +22,7 @@ export type Kegiatan = {
 export const kegiatan: Kegiatan[] = [
   {
     slug: "wisuda-khataman",
+    kategori: "kegiatan",
     badge: "Wisuda & Khataman",
     title: "Wisuda dan Khataman Al-Qur'an Santri LKF",
     desc: "Momen puncak bagi santri yang menyelesaikan hafalan dan khataman Al-Qur'an di Lembaga Kursus Al Quran Al Falah Surabaya.",
@@ -21,6 +31,7 @@ export const kegiatan: Kegiatan[] = [
   },
   {
     slug: "festival-santri",
+    kategori: "kegiatan",
     badge: "Festival Santri",
     title: "Festival Santri (FASI) Lembaga Kursus Al Quran Al Falah",
     desc: "Rangkaian lomba dan kegiatan keagamaan tahunan untuk santri dari segala jenjang kelas.",
@@ -29,6 +40,7 @@ export const kegiatan: Kegiatan[] = [
   },
   {
     slug: "bakti-sosial",
+    kategori: "kegiatan",
     badge: "Bakti Sosial",
     title: "Wisata Bakti Sosial Lembaga Kursus Al Quran Al Falah",
     desc: "Kegiatan sosial tahunan, bagian dari rangkaian Bulan Miladiyah yang mempererat kebersamaan santri dan pengajar.",
@@ -92,19 +104,44 @@ export const programUnggulan: Program[] = [
   },
 ];
 
-// Class formats from the period-128 registration notice (masjidalfalah.or.id). No fees: they
-// change every period and the client wants them asked via WhatsApp.
-export const formatKelas = [
+export type JadwalKelas = {
+  name: string;
+  detail: string;
+  groups: { days: string; slots: string[] }[];
+  note?: string;
+};
+
+// Class schedule. Kelas Reguler: period 133 timetable supplied by the client (17/10).
+// TPQ and Tahfidz: period 128 notice on masjidalfalah.or.id, the newest published; flagged until
+// the client confirms period 133. No fees: they change every period (client decision).
+const REGULER_SLOTS = ["05.30–07.00", "08.00–09.30", "09.45–11.15", "13.00–14.30", "15.30–17.00", "19.30–21.00"];
+export const jadwalKelas: JadwalKelas[] = [
   {
-    name: "Kelas Dewasa Reguler",
-    detail: "Dua kali seminggu, 90 menit per pertemuan.",
-    schedule: "Senin & Rabu, Selasa & Kamis, Jumat & Sabtu, atau Sabtu saja; pagi sampai malam",
+    name: "Kelas Reguler",
+    detail: "Dua kali seminggu, 90 menit per pertemuan. Pilih satu pasangan hari dan satu jam.",
+    groups: [
+      { days: "Senin & Rabu", slots: REGULER_SLOTS },
+      { days: "Selasa & Kamis", slots: REGULER_SLOTS },
+      { days: "Jumat & Sabtu", slots: ["05.30–07.00"] },
+      { days: "Sabtu", slots: ["08.00–11.15"] },
+    ],
   },
-  { name: "Kelas Online", detail: "Belajar dari rumah bersama pengajar.", schedule: "Dua atau empat kali seminggu" },
-  { name: "Kelas Offline Sabtu", detail: "Tatap muka di Masjid Al-Falah.", schedule: "Setiap Sabtu, 08.00–11.00 WIB" },
+  {
+    name: "Kelas TPQ",
+    detail: "Untuk anak, belajar tatap muka dan online (blended).",
+    groups: [{ days: "Senin – Kamis", slots: ["15.30–17.00"] }],
+    note: "Jadwal periode 128, menunggu konfirmasi",
+  },
+  {
+    name: "Kelas Tahfidz untuk TK – SMP",
+    detail: "Hafalan Al-Qur'an untuk anak yang sudah bisa membaca Al-Qur'an.",
+    groups: [{ days: "Sabtu", slots: ["13.00–14.30"] }],
+    note: "Jadwal periode 128, menunggu konfirmasi",
+  },
 ];
 
-// The remaining official programs (16 total with the five above).
+// The remaining programs (14 total with the five above; Siroh Nabi and Imam & Perawatan Jenazah
+// were dropped by the client, 17/10).
 export const programLainnya = [
   "Tartil Al-Qur'an",
   "Tahsin Al-Qur'an",
@@ -112,9 +149,7 @@ export const programLainnya = [
   "Tarjamah Lafdhiyah Al-Qur'an",
   "Hafalan Al-Qur'an",
   "Al Hadist",
-  "Siroh Nabi",
   "Aqidah Akhlaq",
   "Bahasa Arab",
-  "Imam & Perawatan Jenazah",
   "Tahfidz Cilik & TPQ",
 ];

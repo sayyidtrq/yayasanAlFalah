@@ -1,6 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
-import { WHATSAPP_URL } from "@/lib/site";
+import { DAFTAR_HREF } from "@/lib/site";
 import HeroBackdrop from "./HeroBackdrop";
 import Navbar from "./Navbar";
 
@@ -41,15 +40,12 @@ export default function Hero() {
             >
               Lihat Program
             </Link>
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href={DAFTAR_HREF}
               className="btn-lift flex min-h-11 items-center gap-2 rounded-xl bg-jewel px-7 hover:bg-jewel/90"
             >
-              <Image src="/images/whatsapp.svg" alt="" width={18} height={18} />
-              Daftar via WhatsApp
-            </a>
+              Daftar Sekarang
+            </Link>
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
-import Image from "next/image";
-import { WHATSAPP_URL } from "@/lib/site";
+import Link from "next/link";
+import { DAFTAR_HREF } from "@/lib/site";
 import Reveal from "./Reveal";
 
 export default function CtaDaftar() {
@@ -21,15 +21,12 @@ export default function CtaDaftar() {
         </p>
       </Reveal>
       <Reveal delay={150} className="shrink-0">
-        <a
-          href={WHATSAPP_URL}
-          target="_blank"
-          rel="noopener noreferrer"
+        <Link
+          href={DAFTAR_HREF}
           className="btn-lift flex min-h-11 items-center gap-2.5 rounded-xl bg-jewel px-8 py-4 text-base font-semibold text-white hover:bg-jewel/90"
         >
-          <Image src="/images/whatsapp.svg" alt="" width={20} height={20} />
           Mulai Langkah Baikmu!
-        </a>
+        </Link>
       </Reveal>
     </section>
   );

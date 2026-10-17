@@ -7,7 +7,7 @@ import Programs from "@/components/Programs";
 import Stats from "@/components/Stats";
 import Tentang from "@/components/Tentang";
 
-// Full-viewport blocks: hero+stats, nilai unggulan, kegiatan, program, tentang+daftar+footer.
+// Full-viewport blocks: hero+stats, nilai unggulan, berita, program, tentang+daftar+footer.
 export default function Home() {
   return (
     <main>

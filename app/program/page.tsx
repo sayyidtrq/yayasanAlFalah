@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import HashHighlight from "@/components/HashHighlight";
 import PageHeader from "@/components/PageHeader";
 import Reveal from "@/components/Reveal";
-import { formatKelas, programLainnya, programUnggulan } from "@/lib/content";
+import { jadwalKelas, programLainnya, programUnggulan } from "@/lib/content";
 import { WHATSAPP_URL } from "@/lib/site";
 
 /*
@@ -23,7 +23,7 @@ import { WHATSAPP_URL } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Program — Lembaga Kursus Al Qur'an Al Falah",
   description:
-    "Bandingkan program unggulan Lembaga Kursus Al-Qur'an Al-Falah Surabaya: untuk siapa, mulai dari mana, dan apa yang dipelajari. Daftar lewat WhatsApp.",
+    "Bandingkan program unggulan Lembaga Kursus Al-Qur'an Al-Falah Surabaya: untuk siapa, mulai dari mana, apa yang dipelajari, dan jadwal kelasnya.",
 };
 
 const rows = [
@@ -33,7 +33,7 @@ const rows = [
 ] as const;
 
 const waFor = (title: string) =>
-  `${WHATSAPP_URL}?text=${encodeURIComponent(`Assalamu'alaikum, saya ingin bertanya tentang program ${title}.`)}`;
+  `${WHATSAPP_URL}?text=${encodeURIComponent(`Saya ingin mendapatkan penjelasan tentang program ${title}.`)}`;
 
 export default function ProgramPage() {
   return (
@@ -118,41 +118,70 @@ export default function ProgramPage() {
         <HashHighlight ids={programUnggulan.map((p) => p.slug)} />
       </section>
 
-      {/* Format & jadwal */}
-      <section id="format-jadwal" className="bg-blue-stone px-6 py-12 text-white md:px-16 md:py-20">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] lg:gap-16">
-          <Reveal>
-            <h2 className="font-heading text-[28px] leading-tight font-bold md:text-4xl">Format & Jadwal Kelas</h2>
-            <p className="mt-4 max-w-[46ch] text-base leading-7 text-white/85">
-              Semua program dibuka per periode, sekitar empat bulan. Jadwal dan biaya dapat berubah tiap
-              periode, jadi tanyakan yang terbaru ke admin kami.
+      {/* Jadwal kelas: a timetable board, every slot readable at a glance. */}
+      <section id="jadwal" className="bg-blue-stone px-6 py-12 text-white md:px-16 md:py-20">
+        <Reveal className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-[56ch]">
+            <h2 className="font-heading text-[28px] leading-tight font-bold md:text-4xl">Jadwal Kelas</h2>
+            <p className="mt-4 text-base leading-7 text-white/85">
+              Semua program dibuka per periode, sekitar empat bulan. Pilih hari dan jam yang paling
+              cocok; biaya dan kuota terbaru bisa ditanyakan ke admin kami.
             </p>
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-lift mt-6 inline-flex min-h-11 items-center gap-2 rounded-xl bg-white px-6 text-[15px] font-semibold text-blue-stone hover:bg-white/90"
-            >
-              Tanya jadwal & biaya
-            </a>
-          </Reveal>
-          <ul className="flex flex-col">
-            {formatKelas.map((f, i) => (
-              <li key={f.name} className="border-t border-white/20 last:border-b">
-                <Reveal
-                  delay={i * 90}
-                  className="grid gap-1 py-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] md:gap-8"
-                >
-                  <h3 className="font-heading text-2xl font-bold">{f.name}</h3>
-                  <div>
-                    <p className="text-base leading-7 text-white/90">{f.detail}</p>
-                    <p className="mt-1 text-base leading-7 text-white/75">{f.schedule}</p>
-                  </div>
-                </Reveal>
-              </li>
-            ))}
-          </ul>
+          </div>
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-lift inline-flex min-h-11 shrink-0 items-center gap-2 self-start rounded-xl bg-white px-6 text-[15px] font-semibold text-blue-stone hover:bg-white/90 lg:self-auto"
+          >
+            Tanya jadwal & biaya
+          </a>
+        </Reveal>
+
+        <div className="mt-10 grid gap-5 lg:grid-cols-2">
+          {jadwalKelas.map((k, i) => {
+            const wide = k.groups.length > 1;
+            return (
+              <Reveal
+                key={k.name}
+                delay={i * 100}
+                className={`flex flex-col gap-5 rounded-2xl border border-white/20 bg-white/[0.06] p-6 md:p-8 ${
+                  wide ? "lg:col-span-2" : ""
+                }`}
+              >
+                <div className="flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between md:gap-6">
+                  <h3 className="font-heading text-2xl leading-tight font-bold md:text-[28px]">{k.name}</h3>
+                  {k.note && (
+                    <span className="self-start rounded-md border border-dashed border-white/50 px-2.5 py-1 text-sm font-semibold text-white/85">
+                      {k.note}
+                    </span>
+                  )}
+                </div>
+                <p className="text-base leading-7 text-white/85">{k.detail}</p>
+                <dl className={`grid gap-6 ${wide ? "sm:grid-cols-2 xl:grid-cols-4" : ""}`}>
+                  {k.groups.map((g) => (
+                    <div key={g.days} className="border-t border-white/20 pt-4">
+                      <dt className="text-base font-semibold">{g.days}</dt>
+                      <dd className="mt-3">
+                        <ul className="flex flex-wrap gap-2">
+                          {g.slots.map((t) => (
+                            <li
+                              key={t}
+                              className="rounded-lg bg-white px-3 py-1.5 text-[15px] font-semibold text-blue-stone tabular-nums"
+                            >
+                              {t}
+                            </li>
+                          ))}
+                        </ul>
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </Reveal>
+            );
+          })}
         </div>
+        <p className="mt-6 text-sm text-white/75">Semua jam dalam WIB.</p>
       </section>
 
       {/* Program lainnya */}

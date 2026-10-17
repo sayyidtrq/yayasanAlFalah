@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ADDRESS, EMAIL, PHOTO_PLACEHOLDER, WHATSAPP_LABEL, WHATSAPP_URL } from "@/lib/site";
+import { ADDRESS, DAFTAR_HREF, EMAIL, PHOTO_PLACEHOLDER, WHATSAPP_LABEL, WHATSAPP_URL } from "@/lib/site";
 import Reveal from "./Reveal";
 
 const MAPS_QUERY = "Masjid+Al+Falah+Surabaya";
@@ -74,15 +74,12 @@ export default function LokasiPanel() {
               >
                 Lihat Program
               </Link>
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href={DAFTAR_HREF}
                 className="btn-lift flex min-h-12 items-center justify-center gap-2 rounded-xl bg-jewel px-7 text-[15px] font-semibold text-white hover:bg-jewel/90"
               >
-                <Image src="/images/whatsapp.svg" alt="" width={18} height={18} />
-                Daftar via WhatsApp
-              </a>
+                Daftar Sekarang
+              </Link>
             </div>
           </div>
         </div>

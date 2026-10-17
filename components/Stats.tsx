@@ -3,7 +3,7 @@ import Reveal from "./Reveal";
 
 const stats = [
   { value: 48, suffix: "+", label: "Tahun Mengabdi" },
-  { value: 16, suffix: "", label: "Program Kursus" },
+  { value: 14, suffix: "", label: "Program Kursus" },
   { value: 2750, suffix: "+", label: "Santri Aktif" },
 ];
 

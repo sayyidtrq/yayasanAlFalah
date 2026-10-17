@@ -73,9 +73,8 @@ const rumpun = [
   },
   {
     name: "Studi Islam",
-    items: ["Sholat dan Hukum Islam", "Al Hadist", "Siroh Nabi", "Aqidah Akhlaq", "Bahasa Arab", "Dakwah & Public Speaking"],
+    items: ["Sholat dan Hukum Islam", "Al Hadist", "Aqidah Akhlaq", "Bahasa Arab", "Dakwah & Public Speaking"],
   },
-  { name: "Praktik Ibadah", items: ["Imam & Perawatan Jenazah"] },
   { name: "Anak-Anak", items: ["Tahfidz Cilik & TPQ"] },
 ];
 
@@ -328,16 +327,15 @@ export default function TentangKami() {
             <Pill tone="rust">Layanan Kami</Pill>
           </div>
           <h2 className="font-heading text-[28px] leading-[34px] font-bold text-ink md:text-4xl md:leading-11">
-            16 Program untuk Segala Usia
+            14 Program untuk Segala Usia
           </h2>
           <p className="mt-3 max-w-160 text-[15px] leading-6 text-ink-soft md:text-base md:leading-[26px]">
-            Program tersusun dalam empat rumpun. Santri baru mengikuti tes penempatan agar mulai dari
+            Program tersusun dalam tiga rumpun. Santri baru mengikuti tes penempatan agar mulai dari
             kelas yang sesuai kemampuan.
           </p>
         </Reveal>
-        {/* The two single-program groups share the third column so the columns balance. */}
         <div className="mt-10 grid gap-x-10 gap-y-10 md:grid-cols-2 xl:grid-cols-3">
-          {[[rumpun[0]], [rumpun[1]], [rumpun[2], rumpun[3]]].map((col, i) => (
+          {rumpun.map((group) => [group]).map((col, i) => (
             <Reveal key={i} delay={i * 110} className="flex flex-col gap-10">
               {col.map(({ name, items }) => (
                 <div key={name} className="border-t-2 border-rust pt-[18px]">
@@ -369,7 +367,7 @@ export default function TentangKami() {
             </h2>
           </div>
           <Link
-            href="/kegiatan"
+            href="/berita#kegiatan"
             className="text-[15px] font-semibold whitespace-nowrap text-rust underline-offset-4 hover:underline"
           >
             Lihat Semua Kegiatan

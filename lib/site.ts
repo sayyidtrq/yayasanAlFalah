@@ -1,7 +1,11 @@
 export const WHATSAPP_URL = "https://wa.me/6282245168338";
 export const WHATSAPP_LABEL = "+62 822-4516-8338";
-// From masjidalfalah.or.id (yayasan contact); confirm LKF has no dedicated address.
-export const EMAIL = "pengurus@masjidalfalah.or.id";
+export const EMAIL = "kursusalquran@gmail.com";
 export const INSTAGRAM_URL = "https://instagram.com/kursusalfalahsby";
 export const ADDRESS = "Jl. Raya Darmo No. 137A, Lantai 2 (Bag. Selatan), Surabaya";
 export const PHOTO_PLACEHOLDER = "/images/photo-placeholder.svg";
+// Google Form embed URL for /kontak (".../viewform?embedded=true"). Empty until the client
+// shares it; the page shows a "formulir segera tersedia" panel with a WhatsApp fallback meanwhile.
+export const GOOGLE_FORM_URL = "";
+// Every "Daftar" action leads to the registration form on /kontak (client revision 17/10).
+export const DAFTAR_HREF = "/kontak#formulir";

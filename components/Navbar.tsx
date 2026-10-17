@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { WHATSAPP_URL } from "@/lib/site";
+import { DAFTAR_HREF } from "@/lib/site";
 
 type NavLink = {
   href: string;
@@ -20,10 +20,10 @@ const links: NavLink[] = [
     children: [
       { href: "/tentang-kami#profil", label: "Profil Lembaga", hint: "Sejarah dan perjalanan sejak 1978" },
       { href: "/tentang-kami#visi-misi", label: "Visi & Misi", hint: "Arah dan tujuan lembaga" },
-      { href: "/tentang-kami#layanan", label: "Layanan Kami", hint: "16 program dalam empat rumpun" },
+      { href: "/tentang-kami#layanan", label: "Layanan Kami", hint: "14 program dalam tiga rumpun" },
     ],
   },
-  { href: "/kegiatan", label: "Kegiatan" },
+  { href: "/berita", label: "Berita" },
   { href: "/program", label: "Program" },
   { href: "/kontak", label: "Kontak" },
 ];
@@ -139,14 +139,13 @@ export default function Navbar() {
 
         <div className="flex items-center gap-3">
           {/* Hidden on phones: no room next to the menu button; the menu panel carries it. */}
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href={DAFTAR_HREF}
+            onClick={close}
             className="btn-lift hidden min-h-11 items-center rounded-xl bg-jewel px-5 text-[15px] font-semibold text-white hover:bg-jewel/90 sm:flex md:px-6"
           >
             Daftar Sekarang!
-          </a>
+          </Link>
           <button
             ref={toggleRef}
             type="button"
@@ -216,15 +215,13 @@ export default function Navbar() {
             </li>
           ))}
         </ul>
-        <a
-          href={WHATSAPP_URL}
-          target="_blank"
-          rel="noopener noreferrer"
+        <Link
+          href={DAFTAR_HREF}
           onClick={close}
           className="mt-8 flex min-h-12 items-center justify-center rounded-xl bg-white text-[15px] font-semibold text-blue-stone"
         >
           Daftar Sekarang!
-        </a>
+        </Link>
       </div>
     </>
   );

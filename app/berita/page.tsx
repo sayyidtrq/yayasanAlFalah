@@ -4,6 +4,7 @@ import CtaDaftar from "@/components/CtaDaftar";
 import Footer from "@/components/Footer";
 import PageHeader from "@/components/PageHeader";
 import { beritaKategori, kegiatan } from "@/lib/content";
+import { getWpBerita } from "@/lib/wp";
 
 /*
  * Direction (impeccable, surface inside the established world)
@@ -22,14 +23,18 @@ export const metadata: Metadata = {
     "Berita dan dokumentasi Lembaga Kursus Al-Qur'an Al-Falah Surabaya: kegiatan santri, kajian Islam, dan hukum Islam.",
 };
 
-export default function BeritaPage() {
+// Static page, refreshed from WordPress at most every 60 seconds (see lib/wp.ts).
+export const revalidate = 60;
+
+export default async function BeritaPage() {
+  const items = [...(await getWpBerita()), ...kegiatan];
   return (
     <main>
       <PageHeader
         title="Berita"
         intro="Dokumentasi kegiatan santri, kajian Islam, dan hukum Islam di Lembaga Kursus Al-Qur'an Al-Falah Surabaya."
       />
-      <BeritaGallery items={kegiatan} kategori={[...beritaKategori]} />
+      <BeritaGallery items={items} kategori={[...beritaKategori]} />
       <CtaDaftar />
       <Footer />
     </main>

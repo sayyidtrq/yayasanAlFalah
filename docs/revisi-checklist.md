@@ -17,10 +17,10 @@ Format: `[ ] id | butir | file terkait | selesai jika`
 - [x] B1 | Tambah berita "pembelajar dewasa bebas buta aksara" sebagai preview (tanpa foto, foto di-hold) | lib/content.ts | muncul di /berita kategori Kegiatan
 
 ## WordPress sebagai CMS (Jalur B)
-- [ ] W1 | Cek WP: versi, REST API aktif, domain utama dipakai WP atau tidak, tipe hosting | (Chrome, read-only) | ringkasan 5 baris ke Sayyid
-- [ ] W2 | Putuskan domain: WP ke subdomain (mis. cms.), domain utama ke Vercel | (DNS Rumahweb, konfirmasi Sayyid) | keputusan tercatat
+- [x] W1 | Cek WP: versi, REST API aktif, domain utama dipakai WP atau tidak, tipe hosting | (Chrome, read-only) | ringkasan 5 baris ke Sayyid
+- [~] W2 | Keputusan: WP ke cms.kursusquranalfalah.id, domain utama ke Vercel. Langkah di docs/runbook-w2-domain.md (dikerjakan Sayyid di cPanel/Rumahweb/Vercel) | (DNS Rumahweb) | cms. aktif dan domain utama menampilkan Next.js
 - [ ] W3 | Buat kategori WP: Kegiatan, Kajian Islam, Hukum Islam | (WP admin) | 3 kategori ada
-- [ ] W4 | Fetch post WP di /berita (ISR, revalidate 60 dtk), fallback ke data statis kalau WP gagal | app/berita/page.tsx, lib/ (baru) | post WP uji muncul tanpa deploy
+- [x] W4 | Fetch post WP di /berita (ISR, revalidate 60 dtk), fallback ke data statis kalau WP gagal | app/berita/page.tsx, lib/ (baru) | post WP uji muncul tanpa deploy
 - [ ] W5 | Halaman detail berita dari post WP | app/berita/[slug] (baru) | slug dan gambar WP tampil
 
 ## Penutup
@@ -30,3 +30,9 @@ Format: `[ ] id | butir | file terkait | selesai jika`
 ## Menunggu klien
 - Foto profesional (hold, minggu ini)
 - Tanggal kegiatan, konfirmasi deskripsi program, jadwal TPQ/Tahfidz periode 133
+
+## Hasil W1 (26/10/2026)
+- Domain: kursusquranalfalah.id. Hosting Rumahweb "Unlimited M" (cPanel/LiteSpeed), aktif sampai 16 Jul 2027.
+- WordPress 7.1.3 sudah terpasang di domain utama, tema Zakra, isi masih bawaan (1 post "Hello world", kategori Uncategorized saja).
+- REST API publik aktif (/wp-json/wp/v2/posts terbaca tanpa login); CORS membalas Origin yang diminta.
+- /wp-login.php membalas 401 dari server (proteksi level hosting); cara login admin perlu dicek lewat cPanel.

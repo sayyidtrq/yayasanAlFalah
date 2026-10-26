@@ -15,7 +15,7 @@ export default function FormulirKontak() {
             menghubungimu. Santri baru akan mengikuti tes penempatan agar mulai dari kelas yang tepat.
           </p>
           <div className="mt-2 flex flex-col gap-2 border-t border-line pt-5">
-            <p className="text-sm font-semibold text-ink-soft">Lebih suka langsung chat?</p>
+            <p className="text-sm font-semibold text-ink-soft">Ingin Terhubung Langsung dengan Kami?</p>
             <a
               href={WHATSAPP_URL}
               target="_blank"

@@ -118,7 +118,8 @@ const REGULER_SLOTS = ["05.30–07.00", "08.00–09.30", "09.45–11.15", "13.00
 export const jadwalKelas: JadwalKelas[] = [
   {
     name: "Kelas Reguler",
-    detail: "Dua kali seminggu, 90 menit per pertemuan. Pilih satu pasangan hari dan satu jam.",
+    detail:
+      "Pembelajaran diselenggarakan 2 kali dalam seminggu dengan durasi 90 menit per sesi. Silakan tentukan opsi kombinasi hari dan sesi jam yang Anda inginkan.",
     groups: [
       { days: "Senin & Rabu", slots: REGULER_SLOTS },
       { days: "Selasa & Kamis", slots: REGULER_SLOTS },
@@ -129,7 +130,10 @@ export const jadwalKelas: JadwalKelas[] = [
   {
     name: "Kelas TPQ",
     detail: "Untuk anak, belajar tatap muka dan online (blended).",
-    groups: [{ days: "Senin – Kamis", slots: ["15.30–17.00"] }],
+    groups: [
+      { days: "Senin – Kamis", slots: ["15.30–17.00"] },
+      { days: "Sabtu", slots: ["08.00–11.15"] },
+    ],
     note: "Jadwal periode 128, menunggu konfirmasi",
   },
   {

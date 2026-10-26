@@ -124,8 +124,12 @@ export default function ProgramPage() {
           <div className="max-w-[56ch]">
             <h2 className="font-heading text-[28px] leading-tight font-bold md:text-4xl">Jadwal Kelas</h2>
             <p className="mt-4 text-base leading-7 text-white/85">
-              Semua program dibuka per periode, sekitar empat bulan. Pilih hari dan jam yang paling
-              cocok; biaya dan kuota terbaru bisa ditanyakan ke admin kami.
+              Seluruh program diselenggarakan secara periodik dengan durasi sekitar empat bulan.
+              Silakan pilih jadwal hari dan jam yang paling sesuai dengan kebutuhan Anda.
+            </p>
+            <p className="mt-3 text-base leading-7 text-white/85">
+              Periode 136 berlangsung Desember 2026 – April 2027. Pendaftaran dibuka 21 November –
+              17 Desember 2026.
             </p>
           </div>
           <a

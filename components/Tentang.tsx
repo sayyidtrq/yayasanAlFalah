@@ -8,7 +8,7 @@ export default function Tentang() {
       <div className="grid w-full gap-10 md:grid-cols-2 md:items-stretch md:gap-16">
         <Reveal className="flex flex-col items-start justify-center gap-4">
           <h2 className="font-heading text-4xl font-bold text-ink">Mengabdi Sejak 1978</h2>
-          <p className="max-w-130 text-base leading-7 text-ink-soft">
+          <p className="max-w-130 text-base leading-7 text-ink-soft md:text-justify md:hyphens-auto">
             Lembaga Kursus Al Quran Al Falah berada di bawah Yayasan Masjid Al Falah Surabaya.
             Kami membuka kelas Al-Qur&apos;an dan studi keislaman untuk anak-anak hingga lansia,
             tatap muka maupun online.

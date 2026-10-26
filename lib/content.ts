@@ -17,6 +17,8 @@ export type Kegiatan = {
   date: string;
   /** Photo paths under /public. Empty until the client supplies documentation. */
   photos: string[];
+  /** External article about this kegiatan; shown as a link while there are no photos. */
+  href?: string;
 };
 
 export const kegiatan: Kegiatan[] = [
@@ -46,6 +48,17 @@ export const kegiatan: Kegiatan[] = [
     desc: "Kegiatan sosial tahunan, bagian dari rangkaian Bulan Miladiyah yang mempererat kebersamaan santri dan pengajar.",
     date: "[Tanggal menyusul]",
     photos: [],
+  },
+  // Preview item for the client (26/10); photos on hold until professional material arrives.
+  {
+    slug: "pembelajar-dewasa",
+    kategori: "kegiatan",
+    badge: "Pembelajar Dewasa",
+    title: "Fasilitasi Pembelajar Dewasa: Program Fleksibel Bebas Buta Aksara Al-Qur'an",
+    desc: "Program dasar membaca Al-Qur'an dan tadarus untuk orang dewasa dan pekerja, dengan jadwal fleksibel.",
+    date: "28 Juli 2026",
+    photos: [],
+    href: "https://wartapoint.id/2026/07/28/fasilitasi-pembelajar-dewasa-lkq-al-falah-surabaya-hadirkan-program-fleksibel-bebas-buta-aksara-al-quran/",
   },
 ];
 

@@ -26,7 +26,7 @@ export default function Hero() {
           </h1>
           <p
             style={delay(320)}
-            className="rise mt-5 max-w-130 text-lg leading-7 text-white/92 text-shadow-[0_1px_8px_rgba(0,0,0,0.2)]"
+            className="rise mt-5 max-w-130 text-lg md:text-justify md:hyphens-auto leading-7 text-white/92 text-shadow-[0_1px_8px_rgba(0,0,0,0.2)]"
           >
             Belajar membaca, memperbaiki bacaan, menghafal, hingga memahami
             Al-Qur&apos;an bersama Lembaga Kursus Al-Qur&apos;an Al Falah. Tersedia

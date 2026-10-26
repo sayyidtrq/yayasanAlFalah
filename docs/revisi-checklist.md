@@ -11,10 +11,10 @@ Format: `[ ] id | butir | file terkait | selesai jika`
 
 ## Jadwal
 - [x] J1 | Kelas TPQ: tambah Sabtu 08.00-11.15 | app/program/page.tsx | jadwal tampil
-- [ ] J2 | Teks paragraf di-justify | app/globals.css atau komponen terkait | rapi di mobile
+- [x] J2 | Teks paragraf di-justify | app/globals.css atau komponen terkait | rapi di mobile
 
 ## Berita (statis dulu)
-- [ ] B1 | Tambah berita "pembelajar dewasa bebas buta aksara" sebagai preview (tanpa foto, foto di-hold) | lib/content.ts | muncul di /berita kategori Kegiatan
+- [x] B1 | Tambah berita "pembelajar dewasa bebas buta aksara" sebagai preview (tanpa foto, foto di-hold) | lib/content.ts | muncul di /berita kategori Kegiatan
 
 ## WordPress sebagai CMS (Jalur B)
 - [ ] W1 | Cek WP: versi, REST API aktif, domain utama dipakai WP atau tidak, tipe hosting | (Chrome, read-only) | ringkasan 5 baris ke Sayyid

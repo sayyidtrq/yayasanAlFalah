@@ -49,10 +49,17 @@ export default function BeritaGallery({ items, kategori }: { items: Kegiatan[]; 
   );
   // Placeholder tiles: each item still without photos, plus each category with no items yet.
   const pending = [
-    ...visible.filter((k) => k.photos.length === 0).map((k) => ({ key: k.slug, title: k.badge, note: "Foto dokumentasi menyusul" })),
+    ...visible
+      .filter((k) => k.photos.length === 0)
+      .map((k) => ({
+        key: k.slug,
+        title: k.href ? k.title : k.badge,
+        note: k.href ? k.desc : "Foto dokumentasi menyusul",
+        href: k.href,
+      })),
     ...kategori
       .filter((c) => (filter === "semua" || filter === c.slug) && !items.some((k) => k.kategori === c.slug))
-      .map((c) => ({ key: c.slug, title: c.label, note: "Berita menyusul" })),
+      .map((c) => ({ key: c.slug, title: c.label, note: "Berita menyusul", href: undefined })),
   ];
   const active = kategori.find((c) => c.slug === filter);
 
@@ -146,7 +153,7 @@ export default function BeritaGallery({ items, kategori }: { items: Kegiatan[]; 
           {pending.map((k) => (
             <li
               key={k.key}
-              className={`flex flex-col items-center justify-center gap-3 rounded-2xl border border-dashed ${pending.length > 1 ? "aspect-4/3" : "min-h-56 md:aspect-[3/1] md:min-h-0"} border-ink-muted bg-surface p-6 text-center`}
+              className={`flex flex-col items-center justify-center gap-3 rounded-2xl border border-dashed ${pending.length > 1 ? `${k.href ? "min-h-56" : "aspect-4/3"} sm:aspect-auto sm:min-h-84` : "min-h-56 md:aspect-[3/1] md:min-h-0"} border-ink-muted bg-surface p-6 text-center`}
             >
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="text-ink-muted">
                 <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" strokeWidth="1.6" />
@@ -155,6 +162,16 @@ export default function BeritaGallery({ items, kategori }: { items: Kegiatan[]; 
               </svg>
               <p className="text-base font-semibold text-ink">{k.title}</p>
               <p className="text-sm text-ink-soft">{k.note}</p>
+              {k.href && (
+                <a
+                  href={k.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-11 items-center text-[15px] font-semibold text-teal-deep underline-offset-4 hover:underline"
+                >
+                  Baca beritanya
+                </a>
+              )}
             </li>
           ))}
         </ul>

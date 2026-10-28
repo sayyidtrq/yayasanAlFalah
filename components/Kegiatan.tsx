@@ -21,7 +21,7 @@ export default function Kegiatan() {
           label="Berita terbaru"
           slides={kegiatan.map((k) => ({
             key: k.slug,
-            image: PHOTO_PLACEHOLDER,
+            image: k.photos[0] ?? PHOTO_PLACEHOLDER,
             alt: "",
             badge: k.badge,
             title: k.title,

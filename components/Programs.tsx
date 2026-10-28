@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { programUnggulan } from "@/lib/content";
-import { PHOTO_PLACEHOLDER } from "@/lib/site";
 import Reveal from "./Reveal";
 import Slider from "./Slider";
 
@@ -29,7 +28,7 @@ export default function Programs() {
           tone="rust"
           slides={programUnggulan.map((p) => ({
             key: p.slug,
-            image: PHOTO_PLACEHOLDER,
+            image: p.image,
             alt: "",
             title: p.title,
             desc: p.desc,

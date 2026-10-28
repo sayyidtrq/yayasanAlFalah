@@ -43,8 +43,8 @@ One of the pioneers of mosque-based Qur'an education in Surabaya: classes for ev
 
 ## Evidence on Hand
 
-- Hero photo `public/images/hero.png`; building render `public/images/about-us.jpeg`.
-- No per-program or per-activity photos yet; placeholders stand in. Do not use photos of identifiable santri without client consent.
+- Client-supplied visuals (28/10, "Visual Placement" tab of the revision doc), optimised in `public/images`: hero `hero.jpg`, facade `fasad.jpg`, nilai `nilai-unggulan.jpg`, `program/*.jpg` (one per Program Unggulan), `kegiatan/*.jpg` (wisuda, festival, baksos, pembelajar dewasa).
+- Photos of identifiable santri are used because the client supplied them for exactly these placements; do not add others without client consent.
 - Stats confirmed by client: 48+ tahun, 14 program, 2.750+ santri aktif.
 - No testimonials, prices, or teacher credentials on hand; do not invent them.
 

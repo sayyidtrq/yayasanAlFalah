@@ -36,3 +36,13 @@ Format: `[ ] id | butir | file terkait | selesai jika`
 - WordPress 7.1.3 sudah terpasang di domain utama, tema Zakra, isi masih bawaan (1 post "Hello world", kategori Uncategorized saja).
 - REST API publik aktif (/wp-json/wp/v2/posts terbaca tanpa login); CORS membalas Origin yang diminta.
 - /wp-login.php membalas 401 dari server (proteksi level hosting); cara login admin perlu dicek lewat cPanel.
+
+## Revisi 28/10/2026: Visual Placement (tab baru di dokumen revisi)
+- [x] V1 | Hero/Main Picture: Warm Mosque Study Circle | components/HeroBackdrop.tsx | hero.jpg tampil di beranda + header halaman dalam
+- [x] V2 | Nilai Unggulan: _DSF8391 | components/NilaiUnggulan.tsx | foto tampil (desktop)
+- [x] V3 | Wisuda (2), Festival (2), Bakti Sosial (1) | lib/content.ts, app/tentang-kami/page.tsx | tampil di slider beranda, /berita, Kegiatan Tahunan
+- [x] V4 | Fasad "Mengabdi Sejak 1978" | components/Tentang.tsx | fasad.jpg tampil
+- [x] V5 | Visual berita pembelajar dewasa = foto dari portal | lib/content.ts | pembelajar-dewasa.jpg di /berita
+- [x] V6 | 5 visual Program Unggulan | lib/content.ts (field image), components/Programs.tsx | slider program: baca-tulis=MG9397, tafsir=study circle, sholat=DSF8386, akselerasi=MG9602, dakwah=MG9570 (urutan belum ditentukan klien)
+- [x] V7 | Profil: 2 frame tumpuk (DSF8391 + MG9602, coba-coba) + frame fasad di bawah | app/tentang-kami/page.tsx | 3 frame tampil
+- [x] V8 | Footer "Ikuti Kami": tombol TikTok | components/Footer.tsx, lib/site.ts | ikon TikTok ke tiktok.com/@kursusalfalahsby

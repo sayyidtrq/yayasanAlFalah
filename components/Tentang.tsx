@@ -22,7 +22,7 @@ export default function Tentang() {
         </Reveal>
         <Reveal delay={150} className="relative min-h-56 overflow-hidden rounded-2xl border border-line">
           <Image
-            src="/images/about-us.jpeg"
+            src="/images/fasad.jpg"
             alt="Gedung Masjid Al-Falah Surabaya"
             fill
             sizes="(min-width: 768px) 50vw, 100vw"

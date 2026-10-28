@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { PHOTO_PLACEHOLDER } from "@/lib/site";
 import Reveal from "./Reveal";
 
 // Sourced from masjidalfalah.or.id (LKF profile, pendaftaran periode 128) and the LKF history write-up.
@@ -47,7 +46,13 @@ export default function NilaiUnggulan() {
             menyesuaikan kebutuhan santri.
           </p>
           <div className="relative mt-2 hidden aspect-4/3 overflow-hidden rounded-2xl lg:block">
-            <Image src={PHOTO_PLACEHOLDER} alt="" fill className="object-cover opacity-90" />
+            <Image
+              src="/images/nilai-unggulan.jpg"
+              alt="Santri dan pengurus di meja informasi pendaftaran Lembaga Kursus Al-Qur'an Al Falah"
+              fill
+              sizes="(min-width: 1024px) 40vw, 0px"
+              className="object-cover"
+            />
           </div>
         </Reveal>
 

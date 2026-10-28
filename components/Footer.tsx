@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { ADDRESS, EMAIL, INSTAGRAM_URL, WHATSAPP_LABEL, WHATSAPP_URL } from "@/lib/site";
+import { ADDRESS, EMAIL, INSTAGRAM_URL, TIKTOK_URL, WHATSAPP_LABEL, WHATSAPP_URL } from "@/lib/site";
 import Reveal from "./Reveal";
 
 const pages = [
@@ -33,6 +33,12 @@ const icons: Record<string, ReactNode> = {
       <circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" />
     </>
   ),
+  tiktok: (
+    <>
+      <path d="M14 4v10.5a3.5 3.5 0 1 1-3.5-3.5" />
+      <path d="M14 4c.4 2.3 2 3.8 4.5 4" />
+    </>
+  ),
   channel: (
     <>
       <path d="M4 10v4h3l5 4V6L7 10H4Z" />
@@ -48,6 +54,7 @@ const contact = [
 ];
 const social = [
   { icon: "instagram", label: "Instagram @kursusalfalahsby", href: INSTAGRAM_URL },
+  { icon: "tiktok", label: "TikTok @kursusalfalahsby", href: TIKTOK_URL },
   { icon: "channel", label: "Channel WhatsApp", href: "#" },
 ];
 

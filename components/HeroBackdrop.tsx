@@ -7,7 +7,7 @@ export default function HeroBackdrop({ inner = false }: { inner?: boolean }) {
   return (
     <div className="absolute inset-0 overflow-hidden">
       <Image
-        src="/images/hero.png"
+        src="/images/hero.jpg"
         alt=""
         fill
         priority

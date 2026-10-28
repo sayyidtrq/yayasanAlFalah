@@ -5,7 +5,6 @@ import Footer from "@/components/Footer";
 import LokasiPanel from "@/components/LokasiPanel";
 import PageHeader from "@/components/PageHeader";
 import Reveal from "@/components/Reveal";
-import { PHOTO_PLACEHOLDER } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Tentang Kami — Lembaga Kursus Al Qur'an Al Falah",
@@ -83,16 +82,19 @@ const kegiatan = [
     title: "Festival Santri (FASI)",
     text: "Rangkaian lomba dan kegiatan keagamaan untuk santri dari semua jenjang kelas.",
     alt: "Peserta memenuhi ruang acara Festival Santri",
+    image: "/images/kegiatan/festival-2.jpg",
   },
   {
     title: "Haflah, Wisuda, dan Khataman",
     text: "Momen puncak bagi santri yang menyelesaikan hafalan dan khataman Al-Qur'an.",
-    alt: "Wisudawati berselempang Wisuda Al-Qur'an melambaikan tangan",
+    alt: "Wisudawati berselempang Wisuda Al-Qur'an berfoto bersama di atas panggung",
+    image: "/images/kegiatan/wisuda-1.jpg",
   },
   {
     title: "Wisata Bakti Sosial",
     text: "Kegiatan sosial tahunan yang mempererat kebersamaan santri dan pengajar.",
     alt: "Warga menerima paket bantuan dalam kegiatan bakti sosial",
+    image: "/images/kegiatan/baksos.jpg",
   },
 ];
 
@@ -206,21 +208,35 @@ export default function TentangKami() {
             </ul>
           </Reveal>
 
-          {/* Two overlapping photos, as in the design. */}
-          <Reveal delay={150} className="relative mx-auto aspect-[520/460] w-full max-w-130 shrink-0 lg:w-130">
-            <div className="absolute top-0 left-0 h-full w-[73%] overflow-hidden rounded-[20px]">
-              <Image
-                src={PHOTO_PLACEHOLDER}
-                alt="Santri dewasa belajar membaca Al-Qur'an bersama pembimbing di ruang utama masjid"
-                fill
-                className="object-cover"
-              />
+          {/* Two overlapping photos, as in the design, with the mosque facade as a wide frame below.
+              ponytail: which photo sits where is trial and error per the client (28/10); swap the src values. */}
+          <Reveal delay={150} className="mx-auto flex w-full max-w-130 shrink-0 flex-col gap-4 lg:w-130">
+            <div className="relative aspect-[520/460] w-full">
+              <div className="absolute top-0 left-0 h-full w-[73%] overflow-hidden rounded-[20px]">
+                <Image
+                  src="/images/nilai-unggulan.jpg"
+                  alt="Santri dan pengurus di meja informasi pendaftaran Lembaga Kursus Al-Qur'an Al Falah"
+                  fill
+                  sizes="(min-width: 1024px) 380px, 75vw"
+                  className="object-cover"
+                />
+              </div>
+              <div className="absolute right-0 bottom-[7%] h-[63%] w-[48%] overflow-hidden rounded-[20px] border-[6px] border-white">
+                <Image
+                  src="/images/program/akselerasi.jpg"
+                  alt="Pengajar membimbing santri anak membaca Al-Qur'an di lantai masjid"
+                  fill
+                  sizes="(min-width: 1024px) 250px, 48vw"
+                  className="object-cover"
+                />
+              </div>
             </div>
-            <div className="absolute right-0 bottom-[7%] h-[63%] w-[48%] overflow-hidden rounded-[20px] border-[6px] border-white">
+            <div className="relative aspect-[520/220] w-full overflow-hidden rounded-[20px]">
               <Image
-                src={PHOTO_PLACEHOLDER}
-                alt="Ustadzah membimbing dua santri anak membaca buku dasar"
+                src="/images/fasad.jpg"
+                alt="Tampak depan gedung Masjid Al-Falah Surabaya"
                 fill
+                sizes="(min-width: 1024px) 520px, 100vw"
                 className="object-cover"
               />
             </div>
@@ -374,14 +390,15 @@ export default function TentangKami() {
           </Link>
         </Reveal>
         <div className="grid gap-6 md:grid-cols-3">
-          {kegiatan.map(({ title, text, alt }, i) => (
+          {kegiatan.map(({ title, text, alt, image }, i) => (
             <Reveal key={title} delay={i * 120} className="h-full">
               <article className="group h-full overflow-hidden rounded-xl border border-line bg-white">
                 <div className="relative h-50 overflow-hidden md:h-65">
                   <Image
-                    src={PHOTO_PLACEHOLDER}
+                    src={image}
                     alt={alt}
                     fill
+                    sizes="(min-width: 768px) 33vw, 100vw"
                     className="object-cover transition-transform duration-700 ease-out motion-safe:group-hover:scale-105"
                   />
                 </div>

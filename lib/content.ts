@@ -29,7 +29,7 @@ export const kegiatan: Kegiatan[] = [
     title: "Wisuda dan Khataman Al-Qur'an Santri LKF",
     desc: "Momen puncak bagi santri yang menyelesaikan hafalan dan khataman Al-Qur'an di Lembaga Kursus Al Quran Al Falah Surabaya.",
     date: "[Tanggal menyusul]",
-    photos: [],
+    photos: ["/images/kegiatan/wisuda-1.jpg", "/images/kegiatan/wisuda-2.jpg"],
   },
   {
     slug: "festival-santri",
@@ -38,7 +38,7 @@ export const kegiatan: Kegiatan[] = [
     title: "Festival Santri (FASI) Lembaga Kursus Al Quran Al Falah",
     desc: "Rangkaian lomba dan kegiatan keagamaan tahunan untuk santri dari segala jenjang kelas.",
     date: "[Tanggal menyusul]",
-    photos: [],
+    photos: ["/images/kegiatan/festival-1.jpg", "/images/kegiatan/festival-2.jpg"],
   },
   {
     slug: "bakti-sosial",
@@ -47,9 +47,9 @@ export const kegiatan: Kegiatan[] = [
     title: "Wisata Bakti Sosial Lembaga Kursus Al Quran Al Falah",
     desc: "Kegiatan sosial tahunan, bagian dari rangkaian Bulan Miladiyah yang mempererat kebersamaan santri dan pengajar.",
     date: "[Tanggal menyusul]",
-    photos: [],
+    photos: ["/images/kegiatan/baksos.jpg"],
   },
-  // Preview item for the client (26/10); photos on hold until professional material arrives.
+  // Photos below are the client's visual placement (28/10); the news photo is the one from the portal article.
   {
     slug: "pembelajar-dewasa",
     kategori: "kegiatan",
@@ -57,7 +57,7 @@ export const kegiatan: Kegiatan[] = [
     title: "Fasilitasi Pembelajar Dewasa: Program Fleksibel Bebas Buta Aksara Al-Qur'an",
     desc: "Program dasar membaca Al-Qur'an dan tadarus untuk orang dewasa dan pekerja, dengan jadwal fleksibel.",
     date: "28 Juli 2026",
-    photos: [],
+    photos: ["/images/kegiatan/pembelajar-dewasa.jpg"],
     href: "https://wartapoint.id/2026/07/28/fasilitasi-pembelajar-dewasa-lkq-al-falah-surabaya-hadirkan-program-fleksibel-bebas-buta-aksara-al-quran/",
   },
 ];
@@ -66,6 +66,8 @@ export type Program = {
   slug: string;
   title: string;
   desc: string;
+  /** Photo path under /public, shown in the landing slider. */
+  image: string;
   forWho: string;
   startFrom: string;
   topics: string[];
@@ -79,6 +81,7 @@ export const programUnggulan: Program[] = [
     slug: "baca-tulis-al-quran",
     title: "Baca Tulis Al-Qur'an",
     desc: "Fondasi membaca Al-Qur'an dengan benar, dari huruf pertama hingga lancar menulis.",
+    image: "/images/program/baca-tulis-al-quran.jpg",
     forWho: "Pemula dari segala usia yang belum lancar membaca Al-Qur'an",
     startFrom: "Belum mengenal huruf hijaiyah",
     topics: ["Huruf hijaiyah dan harakat", "Membaca kata dan ayat pendek", "Dasar-dasar tajwid", "Menulis huruf Arab"],
@@ -87,6 +90,7 @@ export const programUnggulan: Program[] = [
     slug: "tafsir-al-quran",
     title: "Tafsir Al-Qur'an",
     desc: "Memahami makna dan kandungan ayat agar nilainya hidup dalam keseharian.",
+    image: "/images/program/tafsir-al-quran.jpg",
     forWho: "Santri yang ingin memahami isi Al-Qur'an",
     startFrom: "Sudah lancar membaca Al-Qur'an",
     topics: ["Makna ayat dan konteksnya", "Kandungan hukum dan hikmah", "Penerapan dalam keseharian"],
@@ -95,6 +99,7 @@ export const programUnggulan: Program[] = [
     slug: "sholat-dan-hukum-islam",
     title: "Sholat dan Hukum Islam",
     desc: "Memantapkan tata cara ibadah dan hukum Islam yang dipakai sehari-hari.",
+    image: "/images/program/sholat-dan-hukum-islam.jpg",
     forWho: "Siapa saja yang ingin ibadahnya lebih mantap",
     startFrom: "Terbuka untuk semua tingkat",
     topics: ["Thaharah dan wudhu", "Tata cara dan bacaan sholat", "Fiqih ibadah sehari-hari"],
@@ -103,6 +108,7 @@ export const programUnggulan: Program[] = [
     slug: "akselerasi",
     title: "Akselerasi",
     desc: "Jalur percepatan menuju bacaan Al-Qur'an yang lancar.",
+    image: "/images/program/akselerasi.jpg",
     forWho: "Dewasa yang ingin lebih cepat lancar membaca",
     startFrom: "Bacaan masih terbata-bata",
     topics: ["Metode baca cepat", "Latihan membaca intensif", "Perbaikan makhraj", "Evaluasi bacaan berkala"],
@@ -111,6 +117,7 @@ export const programUnggulan: Program[] = [
     slug: "dakwah-public-speaking",
     title: "Dakwah & Public Speaking",
     desc: "Melatih keberanian dan keterampilan menyampaikan ilmu di depan umum.",
+    image: "/images/program/dakwah-public-speaking.jpg",
     forWho: "Santri yang ingin menyampaikan ilmu di depan umum",
     startFrom: "Sudah lancar membaca Al-Qur'an",
     topics: ["Menyusun materi kultum dan ceramah", "Teknik berbicara di depan umum", "Praktik tampil dan evaluasi"],

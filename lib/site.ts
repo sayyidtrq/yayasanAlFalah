@@ -3,6 +3,7 @@ export const WHATSAPP_LABEL = "+62 822-4516-8338";
 export const EMAIL = "kursusalquran@gmail.com";
 export const INSTAGRAM_URL = "https://instagram.com/kursusalfalahsby";
 export const ADDRESS = "Jl. Raya Darmo No. 137A, Lantai 2 (Bag. Selatan), Surabaya";
+export const TIKTOK_URL = "https://www.tiktok.com/@kursusalfalahsby";
 export const PHOTO_PLACEHOLDER = "/images/photo-placeholder.svg";
 // Google Form embed URL for /kontak (".../viewform?embedded=true"). Empty until the client
 // shares it; the page shows a "formulir segera tersedia" panel with a WhatsApp fallback meanwhile.

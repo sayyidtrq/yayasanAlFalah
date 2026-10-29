@@ -44,5 +44,9 @@ Format: `[ ] id | butir | file terkait | selesai jika`
 - [x] V4 | Fasad "Mengabdi Sejak 1978" | components/Tentang.tsx | fasad.jpg tampil
 - [x] V5 | Visual berita pembelajar dewasa = foto dari portal | lib/content.ts | pembelajar-dewasa.jpg di /berita
 - [x] V6 | 5 visual Program Unggulan | lib/content.ts (field image), components/Programs.tsx | slider program: baca-tulis=MG9397, tafsir=study circle, sholat=DSF8386, akselerasi=MG9602, dakwah=MG9570 (urutan belum ditentukan klien)
-- [x] V7 | Profil: 2 frame tumpuk (DSF8391 + MG9602, coba-coba) + frame fasad di bawah | app/tentang-kami/page.tsx | 3 frame tampil
+- [x] V7 | Profil: 2 frame tumpuk (DSF8391 + MG9602, coba-coba); fasad dipindah ke "Hubungi Kami" (koreksi klien 29/10) | app/tentang-kami/page.tsx, components/FormulirKontak.tsx | profil 2 frame, fasad di kontak
 - [x] V8 | Footer "Ikuti Kami": tombol TikTok | components/Footer.tsx, lib/site.ts | ikon TikTok ke tiktok.com/@kursusalfalahsby
+
+## Revisi 29/10/2026 (WhatsApp)
+- [x] R1 | Fasad ditambah di bagian "Hubungi Kami" (kontak), Profil tetap 2 frame | components/FormulirKontak.tsx, app/tentang-kami/page.tsx
+- [x] R2 | Slider "Berita Terbaru" auto-slide (5 dtk; jeda saat hover/fokus/sentuh, di luar layar, tab tersembunyi, dan prefers-reduced-motion) | components/Slider.tsx, components/Kegiatan.tsx | slider program belum auto-slide (tidak diminta)

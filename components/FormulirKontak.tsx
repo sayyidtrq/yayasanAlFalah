@@ -29,6 +29,15 @@ export default function FormulirKontak() {
               WhatsApp {WHATSAPP_LABEL}
             </a>
           </div>
+          <div className="relative mt-2 aspect-[16/9] w-full overflow-hidden rounded-2xl">
+            <Image
+              src="/images/fasad.jpg"
+              alt="Tampak depan gedung Masjid Al-Falah Surabaya"
+              fill
+              sizes="(min-width: 1024px) 40vw, 100vw"
+              className="object-cover"
+            />
+          </div>
         </Reveal>
 
         <Reveal delay={120}>

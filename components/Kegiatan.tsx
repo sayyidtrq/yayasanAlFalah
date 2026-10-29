@@ -19,6 +19,7 @@ export default function Kegiatan() {
       <Reveal>
         <Slider
           label="Berita terbaru"
+          autoPlayMs={5000}
           slides={kegiatan.map((k) => ({
             key: k.slug,
             image: k.photos[0] ?? PHOTO_PLACEHOLDER,

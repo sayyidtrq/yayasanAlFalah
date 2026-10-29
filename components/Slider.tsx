@@ -22,13 +22,18 @@ export default function Slider({
   label,
   slides,
   tone = "teal",
+  autoPlayMs,
 }: {
   label: string;
   slides: Slide[];
   tone?: "teal" | "rust";
+  /** Advance to the next slide every N ms. Pauses on hover/focus, offscreen, hidden tab and reduced motion. */
+  autoPlayMs?: number;
 }) {
   const track = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     const el = track.current;
@@ -46,10 +51,39 @@ export default function Slider({
     el.scrollTo({ left: n * el.clientWidth, behavior: smooth ? "smooth" : "auto" });
   };
 
+  useEffect(() => {
+    const el = track.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([e]) => setVisible(e.isIntersecting), { threshold: 0.4 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!autoPlayMs || paused || !visible || slides.length < 2) return;
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const id = setInterval(() => {
+      if (!document.hidden) go(index + 1);
+    }, autoPlayMs);
+    return () => clearInterval(id);
+    // `go` only reads the track ref and slide count.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [autoPlayMs, paused, visible, index, slides.length]);
+
   const accent = tone === "rust" ? "bg-rust" : "bg-teal-deep";
 
   return (
-    <div role="region" aria-roledescription="carousel" aria-label={label} className="relative">
+    <div
+      role="region"
+      aria-roledescription="carousel"
+      aria-label={label}
+      className="relative"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocus={() => setPaused(true)}
+      onBlur={() => setPaused(false)}
+      onTouchStart={() => setPaused(true)}
+    >
       <div
         ref={track}
         tabIndex={0}

@@ -208,8 +208,8 @@ export default function TentangKami() {
             </ul>
           </Reveal>
 
-          {/* Two overlapping photos, as in the design, with the mosque facade as a wide frame below.
-              ponytail: which photo sits where is trial and error per the client (28/10); swap the src values. */}
+          {/* Two overlapping photos, as in the design (client confirmed 29/10: stays two frames).
+              ponytail: which photo sits where is trial and error per the client; swap the src values. */}
           <Reveal delay={150} className="mx-auto flex w-full max-w-130 shrink-0 flex-col gap-4 lg:w-130">
             <div className="relative aspect-[520/460] w-full">
               <div className="absolute top-0 left-0 h-full w-[73%] overflow-hidden rounded-[20px]">
@@ -230,15 +230,6 @@ export default function TentangKami() {
                   className="object-cover"
                 />
               </div>
-            </div>
-            <div className="relative aspect-[520/220] w-full overflow-hidden rounded-[20px]">
-              <Image
-                src="/images/fasad.jpg"
-                alt="Tampak depan gedung Masjid Al-Falah Surabaya"
-                fill
-                sizes="(min-width: 1024px) 520px, 100vw"
-                className="object-cover"
-              />
             </div>
           </Reveal>
         </div>

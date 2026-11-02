@@ -50,3 +50,4 @@ Format: `[ ] id | butir | file terkait | selesai jika`
 ## Revisi 29/10/2026 (WhatsApp)
 - [x] R1 | Fasad ditambah di bagian "Hubungi Kami" (kontak), Profil tetap 2 frame | components/FormulirKontak.tsx, app/tentang-kami/page.tsx
 - [x] R2 | Slider "Berita Terbaru" auto-slide (5 dtk; jeda saat hover/fokus/sentuh, di luar layar, tab tersembunyi, dan prefers-reduced-motion) | components/Slider.tsx, components/Kegiatan.tsx | slider program belum auto-slide (tidak diminta)
+- [x] R3 (2/11) | Auto-slide kurang terlihat: jeda 5 dtk jadi 3,5 dtk, geser eased 900 ms, aktif juga di slider Program Unggulan; klik panah tidak lagi membekukan slider | components/Slider.tsx, Kegiatan.tsx, Programs.tsx

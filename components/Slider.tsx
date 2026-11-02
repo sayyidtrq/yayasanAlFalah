@@ -43,12 +43,37 @@ export default function Slider({
     return () => el.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Eased scroll (the browser's native smooth scroll is short and abrupt on a full-width slide).
+  // Snapping is switched off while animating, otherwise it fights the frames.
+  const raf = useRef(0);
+  const stop = () => {
+    cancelAnimationFrame(raf.current);
+    if (track.current) track.current.style.scrollSnapType = "";
+  };
+  useEffect(() => stop, []);
+
   const go = (i: number) => {
     const el = track.current;
     if (!el) return;
     const n = (i + slides.length) % slides.length;
-    const smooth = !matchMedia("(prefers-reduced-motion: reduce)").matches;
-    el.scrollTo({ left: n * el.clientWidth, behavior: smooth ? "smooth" : "auto" });
+    const to = n * el.clientWidth;
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      el.scrollTo({ left: to, behavior: "auto" });
+      return;
+    }
+    stop();
+    const from = el.scrollLeft;
+    const start = performance.now();
+    const duration = 900;
+    el.style.scrollSnapType = "none";
+    const step = (now: number) => {
+      const t = Math.min((now - start) / duration, 1);
+      const eased = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; // easeInOutCubic
+      el.scrollLeft = from + (to - from) * eased;
+      if (t < 1) raf.current = requestAnimationFrame(step);
+      else el.style.scrollSnapType = "";
+    };
+    raf.current = requestAnimationFrame(step);
   };
 
   useEffect(() => {
@@ -80,13 +105,17 @@ export default function Slider({
       className="relative"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
-      onFocus={() => setPaused(true)}
+      // Only keyboard focus pauses; a mouse click on an arrow must not freeze the slider.
+      onFocus={(e) => e.target.matches(":focus-visible") && setPaused(true)}
       onBlur={() => setPaused(false)}
       onTouchStart={() => setPaused(true)}
+      onTouchEnd={() => setTimeout(() => setPaused(false), 4000)}
     >
       <div
         ref={track}
         tabIndex={0}
+        onWheel={stop}
+        onPointerDown={stop}
         className="flex snap-x snap-mandatory overflow-x-auto rounded-2xl outline-offset-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {slides.map((s, i) => (

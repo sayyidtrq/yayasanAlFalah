@@ -25,6 +25,7 @@ export default function Programs() {
       <Reveal>
         <Slider
           label="Program unggulan"
+          autoPlayMs={3500}
           tone="rust"
           slides={programUnggulan.map((p) => ({
             key: p.slug,

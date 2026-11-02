@@ -1,6 +1,6 @@
 // Berita from the client's WordPress (cms.kursusquranalfalah.id) via the public REST API.
 // Fails soft: with no WP_API_URL, or when WP is unreachable, callers fall back to lib/content.ts.
-import { beritaKategori, type Kegiatan } from "./content";
+import { beritaKategori, kegiatan, type Kegiatan } from "./content";
 
 type WpTerm = { slug: string; taxonomy: string };
 type WpPost = {
@@ -9,6 +9,7 @@ type WpPost = {
   link: string;
   title: { rendered: string };
   excerpt: { rendered: string };
+  content?: { rendered: string };
   _embedded?: {
     "wp:featuredmedia"?: { source_url?: string }[];
     "wp:term"?: WpTerm[][];
@@ -50,11 +51,20 @@ export async function getWpBerita(): Promise<Kegiatan[]> {
           desc: plain(p.excerpt.rendered),
           date: new Date(p.date).toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" }),
           photos: photo ? [photo] : [],
-          href: p.link,
+          html: p.content?.rendered,
         },
       ];
     });
   } catch {
     return [];
   }
+}
+
+// Every berita for the site: WordPress posts first (newest first), then the static items.
+export async function getBerita(): Promise<Kegiatan[]> {
+  return [...(await getWpBerita()), ...kegiatan];
+}
+
+export async function getBeritaBySlug(slug: string): Promise<Kegiatan | undefined> {
+  return (await getBerita()).find((k) => k.slug === slug);
 }

@@ -21,7 +21,7 @@ Format: `[ ] id | butir | file terkait | selesai jika`
 - [~] W2 | Keputusan: WP ke cms.kursusquranalfalah.id, domain utama ke Vercel. Langkah di docs/runbook-w2-domain.md (dikerjakan Sayyid di cPanel/Rumahweb/Vercel) | (DNS Rumahweb) | cms. aktif dan domain utama menampilkan Next.js
 - [ ] W3 | Buat kategori WP: Kegiatan, Kajian Islam, Hukum Islam | (WP admin) | 3 kategori ada
 - [x] W4 | Fetch post WP di /berita (ISR, revalidate 60 dtk), fallback ke data statis kalau WP gagal | app/berita/page.tsx, lib/ (baru) | post WP uji muncul tanpa deploy
-- [ ] W5 | Halaman detail berita dari post WP | app/berita/[slug] (baru) | slug dan gambar WP tampil
+- [x] W5 | Halaman detail berita dari post WP | app/berita/[slug] (baru) | slug dan gambar WP tampil
 
 ## Penutup
 - [ ] Z1 | Responsive QA mobile seluruh halaman | semua halaman | tidak ada layout pecah
@@ -52,3 +52,10 @@ Format: `[ ] id | butir | file terkait | selesai jika`
 - [x] R2 | Slider "Berita Terbaru" auto-slide (5 dtk; jeda saat hover/fokus/sentuh, di luar layar, tab tersembunyi, dan prefers-reduced-motion) | components/Slider.tsx, components/Kegiatan.tsx | slider program belum auto-slide (tidak diminta)
 - [x] R3 (2/11) | Auto-slide kurang terlihat: jeda 5 dtk jadi 3,5 dtk, geser eased 900 ms, aktif juga di slider Program Unggulan; klik panah tidak lagi membekukan slider | components/Slider.tsx, Kegiatan.tsx, Programs.tsx
 - [x] R4 (2/11) | Section Berita Terbaru seperti pwmu.co: slider besar di kiri + kolom "Headline" di kanan (hanya judul, thumbnail kecil, tanggal) | components/Kegiatan.tsx | desktop 2 kolom, mobile bertumpuk; slider 2 item pertama, sisanya headline (konstanta FEATURED)
+
+## Revisi 2/11/2026: Section "Berita" jadi blog (iterasi ke-3, tab "Section Berita" di dokumen revisi)
+- [x] B2 | /berita bukan hanya galeri foto: daftar artikel (kartu: foto, kategori, judul, deskripsi tampil default, tanggal) + filter Kegiatan/Kajian Islam/Hukum Islam | components/BeritaArtikel.tsx, app/berita/page.tsx
+- [x] B3 | Tiap berita bisa dibuka sebagai artikel: /berita/[slug] (isi HTML dari WP, atau ringkasan + tautan sumber untuk item statis), "Berita Lainnya" | app/berita/[slug]/page.tsx, lib/wp.ts, app/globals.css (.wp-content)
+- [x] B4 | Layout slider + Headline (sudah benar menurut klien) dipakai juga di /berita (beranda tetap, boleh duplikat) | components/BeritaTerbaru.tsx
+- [x] B5 | Galeri foto dipindah ke paling bawah /berita ("Galeri Foto"), tanpa filter sendiri | components/BeritaGallery.tsx
+- Catatan: isi artikel lengkap untuk 4 berita statis belum ada dari klien (halaman artikel menampilkan ringkasan; "Artikel lengkap segera hadir" bila tanpa tautan sumber). Isi lengkap datang dari WordPress setelah W2/W3 beres.

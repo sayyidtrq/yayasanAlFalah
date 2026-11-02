@@ -1,17 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
-import type { Kegiatan, KategoriSlug } from "@/lib/content";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import type { Kegiatan } from "@/lib/content";
 
 type Photo = { src: string; kegiatan: Kegiatan; n: number; total: number };
-
-// The URL hash is the filter's source of truth, so /berita#<kategori> links and back/forward work.
-const subscribeHash = (cb: () => void) => {
-  window.addEventListener("hashchange", cb);
-  return () => window.removeEventListener("hashchange", cb);
-};
-const readHash = () => decodeURIComponent(location.hash.slice(1));
 
 const arrow = (dir: "prev" | "next") => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -27,51 +20,16 @@ const arrow = (dir: "prev" | "next") => (
 const navBtn =
   "flex size-12 items-center justify-center rounded-full border border-white/40 bg-black/55 text-white transition-colors hover:bg-black/75";
 
-type Kategori = { slug: KategoriSlug; label: string };
-
-export default function BeritaGallery({ items, kategori }: { items: Kegiatan[]; kategori: Kategori[] }) {
-  const hash = useSyncExternalStore(subscribeHash, readHash, () => "");
-  const filter = kategori.some((c) => c.slug === hash) ? hash : "semua";
+// Photo wall with a full-screen viewer. Only real photos appear; the article list above covers
+// the news without photos.
+export default function BeritaGallery({ items }: { items: Kegiatan[] }) {
   const [open, setOpen] = useState<number | null>(null);
   const dialog = useRef<HTMLDialogElement>(null);
-  const section = useRef<HTMLElement>(null);
 
-  const visible = useMemo(
-    () => (filter === "semua" ? items : items.filter((k) => k.kategori === filter)),
-    [items, filter],
-  );
-  // Only real photos enter the wall and the lightbox; a kegiatan without photos gets one
-  // honest "foto menyusul" tile instead of fake stand-ins.
   const photos = useMemo<Photo[]>(
-    () =>
-      visible.flatMap((k) => k.photos.map((src, i) => ({ src, kegiatan: k, n: i + 1, total: k.photos.length }))),
-    [visible],
+    () => items.flatMap((k) => k.photos.map((src, i) => ({ src, kegiatan: k, n: i + 1, total: k.photos.length }))),
+    [items],
   );
-  // Placeholder tiles: each item still without photos, plus each category with no items yet.
-  const pending = [
-    ...visible
-      .filter((k) => k.photos.length === 0)
-      .map((k) => ({
-        key: k.slug,
-        title: k.href ? k.title : k.badge,
-        note: k.href ? k.desc : "Foto dokumentasi menyusul",
-        href: k.href,
-      })),
-    ...kategori
-      .filter((c) => (filter === "semua" || filter === c.slug) && !items.some((k) => k.kategori === c.slug))
-      .map((c) => ({ key: c.slug, title: c.label, note: "Berita menyusul", href: undefined })),
-  ];
-  const active = kategori.find((c) => c.slug === filter);
-
-  // Arriving on /berita#<kategori> (from the landing slider): bring the gallery into view.
-  useEffect(() => {
-    if (kategori.some((c) => c.slug === readHash())) section.current?.scrollIntoView();
-  }, [kategori]);
-
-  const choose = (slug: string) => {
-    history.replaceState(null, "", slug === "semua" ? location.pathname : `#${slug}`);
-    window.dispatchEvent(new HashChangeEvent("hashchange")); // replaceState fires no event itself
-  };
 
   const step = useCallback(
     (d: number) => setOpen((i) => (i === null ? i : (i + d + photos.length) % photos.length)),
@@ -96,30 +54,12 @@ export default function BeritaGallery({ items, kategori }: { items: Kegiatan[]; 
   }, [open, step]);
 
   const current = open === null ? null : photos[open];
-  const tabs = [{ slug: "semua", label: "Semua berita" }, ...kategori];
+
+  if (photos.length === 0) return null;
 
   return (
-    <section ref={section} id="galeri" className="bg-white px-6 py-12 md:px-16 md:py-20">
-      <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-        {active ? (
-          <h2 className="font-heading text-[28px] leading-tight font-bold text-ink md:text-4xl">{active.label}</h2>
-        ) : (
-          <h2 className="sr-only">Galeri Berita</h2>
-        )}
-        <div role="group" aria-label="Saring berita" className="flex flex-wrap gap-2">
-          {tabs.map((t) => (
-            <button
-              key={t.slug}
-              type="button"
-              onClick={() => choose(t.slug)}
-              aria-pressed={filter === t.slug}
-              className="min-h-11 rounded-full border border-line px-4 text-sm font-semibold text-ink transition-colors hover:border-teal-deep aria-pressed:border-teal-deep aria-pressed:bg-teal-deep aria-pressed:text-white"
-            >
-              {t.label}
-            </button>
-          ))}
-        </div>
-      </div>
+    <section id="galeri" className="scroll-mt-20 bg-mist px-6 py-12 md:px-16 md:py-20">
+      <h2 className="font-heading text-[28px] leading-tight font-bold text-ink md:text-4xl">Galeri Foto</h2>
 
       {photos.length > 0 && (
         <ul className="mt-8 columns-1 gap-4 sm:columns-2 lg:columns-3 [&>li]:mb-4">
@@ -143,35 +83,6 @@ export default function BeritaGallery({ items, kategori }: { items: Kegiatan[]; 
                   {p.kegiatan.badge}
                 </span>
               </button>
-            </li>
-          ))}
-        </ul>
-      )}
-
-      {pending.length > 0 && (
-        <ul className={`mt-8 grid gap-4 ${pending.length > 1 ? "sm:grid-cols-2 lg:grid-cols-3" : ""}`}>
-          {pending.map((k) => (
-            <li
-              key={k.key}
-              className={`flex flex-col items-center justify-center gap-3 rounded-2xl border border-dashed ${pending.length > 1 ? `${k.href ? "min-h-56" : "aspect-4/3"} sm:aspect-auto sm:min-h-84` : "min-h-56 md:aspect-[3/1] md:min-h-0"} border-ink-muted bg-surface p-6 text-center`}
-            >
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="text-ink-muted">
-                <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" strokeWidth="1.6" />
-                <circle cx="9" cy="10" r="1.6" stroke="currentColor" strokeWidth="1.6" />
-                <path d="m4 17 5-4.5 3.5 3 3-2.5L20 17" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
-              </svg>
-              <p className="text-base font-semibold text-ink">{k.title}</p>
-              <p className="text-sm text-ink-soft">{k.note}</p>
-              {k.href && (
-                <a
-                  href={k.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex min-h-11 items-center text-[15px] font-semibold text-teal-deep underline-offset-4 hover:underline"
-                >
-                  Baca beritanya
-                </a>
-              )}
             </li>
           ))}
         </ul>

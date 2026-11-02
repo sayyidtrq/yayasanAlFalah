@@ -17,8 +17,10 @@ export type Kegiatan = {
   date: string;
   /** Photo paths under /public. Empty until the client supplies documentation. */
   photos: string[];
-  /** External article about this kegiatan; shown as a link while there are no photos. */
+  /** External article about this kegiatan (e.g. a news portal); linked from the detail page. */
   href?: string;
+  /** Full article body as HTML. Comes from WordPress; static items have none yet. */
+  html?: string;
 };
 
 export const kegiatan: Kegiatan[] = [

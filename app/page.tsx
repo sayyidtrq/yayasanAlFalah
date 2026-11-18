@@ -7,6 +7,9 @@ import Programs from "@/components/Programs";
 import Stats from "@/components/Stats";
 import Tentang from "@/components/Tentang";
 
+// Berita Terbaru comes from WordPress: refresh at most every 60 seconds, like /berita (lib/wp.ts).
+export const revalidate = 60;
+
 // Full-viewport blocks: hero+stats, nilai unggulan, berita, program, tentang+daftar+footer.
 export default function Home() {
   return (

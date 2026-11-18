@@ -10,8 +10,8 @@ Urutan penting: siapkan cms. dulu, baru ubah domain utama. Tiap langkah tandai s
 1. [x] Backup penuh dulu (menu Backup, atau Softaculous Backup untuk WP).
 2. [x] Buat subdomain `cms.kursusquranalfalah.id` (menu Domains/Subdomains). Catat folder dokumennya.
 3. [x] Pasang WordPress baru di cms. lewat Softaculous/WordPress Toolkit. Pakai https, username admin bukan "admin", password kuat. Simpan kredensial di password manager, bukan di repo/chat.
-4. [ ] Pastikan SSL untuk cms. aktif (AutoSSL/Let's Encrypt). Buka https://cms.kursusquranalfalah.id dan cek gembok.
-5. [ ] Login admin cms. berhasil. (Catatan: /wp-login.php di domain lama membalas 401, kemungkinan proteksi hosting; cek apakah ikut berlaku di cms.)
+4. [x] Pastikan SSL untuk cms. aktif (AutoSSL/Let's Encrypt). Buka https://cms.kursusquranalfalah.id dan cek gembok.
+5. [x] Login admin cms. berhasil. (Catatan: /wp-login.php di domain lama membalas 401, kemungkinan proteksi hosting; cek apakah ikut berlaku di cms.)
 6. [ ] Settings > Permalinks: pilih "Post name". Cek https://cms.kursusquranalfalah.id/wp-json/wp/v2/posts terbaca.
 
 ## B. Vercel
@@ -31,6 +31,12 @@ Urutan penting: siapkan cms. dulu, baru ubah domain utama. Tiap langkah tandai s
 - Selama propagasi DNS (menit sampai beberapa jam) sebagian pengunjung masih melihat versi lama.
 - Jangan hapus WP lama sebelum langkah 11 lolos.
 - Jangan ubah record email/MX; belum ada, tapi jangan tambahkan tanpa rencana.
+
+## Status (17/11/2026)
+- Langkah 4-5 beres: SSL cms. Let's Encrypt valid (s.d. Jan 2027); Rumahweb membuka proteksi wp-login; admin login lewat reset password Softaculous.
+- REST API cms. terbaca publik. WP_API_URL sudah diset di project Vercel baru (akun sayyid, project yayasan-al-falah-fe) setelah migrasi akun 14/11.
+- DNS dikelola nameserver Rumahweb (ns1-4). Apex, www, cms semua A/CNAME ke 202.10.43.103. MX apex menunjuk ke apex sendiri.
+- Berikutnya: bagian B/C di project yayasan-al-falah-fe.
 
 ## Status (26/10/2026, ditahan)
 - Selesai: backup DB (langkah 1), subdomain cms. (2), WP baru terpasang di cms. (3).

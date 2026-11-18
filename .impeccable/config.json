@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "app/globals.css"
+        ],
+        "createdAt": "2026-11-18T14:59:59.491Z",
+        "reason": "Claude triage: L141 is .wp-content blockquote quote rule for WordPress article body, conventional quotation styling, not a card accent; predates session (a7a7478)"
+      }
+    ]
+  }
+}

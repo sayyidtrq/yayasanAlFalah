@@ -28,6 +28,21 @@ function plain(html: string): string {
     .trim();
 }
 
+// Same upload without WordPress's resized-copy suffix ("foto-1024x683.jpg" -> "foto.jpg").
+const original = (src: string) => src.replace(/-\d+x\d+(?=\.\w+$)/, "").replace(/-scaled(?=\.\w+$)/, "");
+
+// Featured image first, then every image in the post body, so one post (one kegiatan) feeds the
+// gallery with all its photos. Only uploads on the CMS itself: next.config.ts allows no other host.
+function postPhotos(featured: string | undefined, html: string | undefined, uploads: string): string[] {
+  const body = [...(html ?? "").matchAll(/<img\b[^>]*?\ssrc="([^"]+)"/gi)].map((m) => m[1].replace(/&amp;/g, "&"));
+  const seen = new Set<string>();
+  return [featured, ...body].filter((src): src is string => {
+    if (!src?.startsWith(uploads) || seen.has(original(src))) return false;
+    seen.add(original(src));
+    return true;
+  });
+}
+
 export async function getWpBerita(): Promise<Kegiatan[]> {
   const base = process.env.WP_API_URL;
   if (!base) return [];
@@ -37,6 +52,7 @@ export async function getWpBerita(): Promise<Kegiatan[]> {
     });
     if (!res.ok) return [];
     const posts = (await res.json()) as WpPost[];
+    const uploads = `${new URL(base).origin}/wp-content/uploads/`;
     return posts.flatMap((p) => {
       const terms = p._embedded?.["wp:term"]?.flat() ?? [];
       const kategori = beritaKategori.find((c) => terms.some((t) => t.taxonomy === "category" && t.slug === c.slug));
@@ -50,7 +66,7 @@ export async function getWpBerita(): Promise<Kegiatan[]> {
           title: plain(p.title.rendered),
           desc: plain(p.excerpt.rendered),
           date: new Date(p.date).toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" }),
-          photos: photo ? [photo] : [],
+          photos: postPhotos(photo, p.content?.rendered, uploads),
           html: p.content?.rendered,
         },
       ];
